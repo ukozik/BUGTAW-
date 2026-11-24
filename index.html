@@ -438,7 +438,42 @@ hr {
   font-weight: bold;
 }
     </style>
+  
+<!-- ACTUAL ROOM SCREEN -->
+<div id="roomView" class="room-screen hidden">
 
+  <div class="room-top">
+    <button class="back-button" onclick="closeRoom()">
+      ← Back
+    </button>
+    <span class="live-label">● ROOM OPEN</span>
+  </div>
+
+  <h2 id="roomTitle">Room Name</h2>
+  <p class="description" id="roomTopic"></p>
+
+  <hr>
+
+  <h3>Room Host</h3>
+  <div id="roomHost"></div>
+
+  <hr>
+
+  <h3>Members <span id="roomMemberCount"></span></h3>
+  <div id="roomMemberList"></div>
+
+  <hr>
+
+  <p class="small-note">
+    You are connected to this room's member list.
+    Live audio is not connected yet.
+  </p>
+
+  <button class="secondary" onclick="leaveRoom()">
+    Leave Room
+  </button>
+
+</div>
   <!-- BOTTOM NAVIGATION -->
   <div class="bottom-nav">
     <button class="active" onclick="showTab('home', this)">
