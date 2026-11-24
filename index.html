@@ -168,7 +168,30 @@ button.google {
 }
 
 /* HOME */
+<div id="home" class="home-screen">
 
+  <header class="home-topbar">
+  <div class="home-categories">
+    <button onclick="setHomeCategory(this)">Related</button>
+    <button onclick="setHomeCategory(this)">Hot</button>
+    <button class="active" onclick="setHomeCategory(this)">Live</button>
+    <button onclick="setHomeCategory(this)">Explore</button>
+  </div>
+
+  <div class="home-actions">
+    <button class="home-icon" title="Search"
+      onclick="toggleSearch()">⌕</button>
+
+    <button class="home-icon" title="My Room"
+      onclick="openMyRoom()">⌂</button>
+  </div>
+</header>
+
+<div id="searchArea" class="search-area">
+  <input id="roomSearch" placeholder="Search rooms..."
+    oninput="filterRooms(this.value)">
+</div>
+  
 .home-header {
   display: flex;
   align-items: center;
