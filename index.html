@@ -6,79 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#170D29">
 <title>BUGTAW - Your Voice, Your World</title>
-<style>
- 
-.home-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.home-header h2 {
-  color: #C69AFF;
-  letter-spacing: 2px;
-}
-
-.profile-circle {
-  background: #8654C9;
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-.home-banner {
-  background: linear-gradient(135deg, #513078, #281A3D);
-  border-radius: 16px;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.room-card {
-  background: #190F28;
-  border: 1px solid #59446F;
-  border-radius: 15px;
-  padding: 17px;
-  margin-top: 14px;
-}
-
-.live-label {
-  color: #FF6B91;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.join-button {
-  background: #8654C9;
-  color: white;
-  padding: 11px;
-  margin-top: 12px;
-}
-
-.bottom-nav {
-  display: flex;
-  justify-content: space-around;
-  gap: 5px;
-  margin-top: 25px;
-  padding: 15px 5px;
-  background: #281A3D;
-  border-radius: 15px;
-}
-
-.bottom-nav button {
-  background: transparent;
-  color: #C3B4D4;
-  font-size: 11px;
-  padding: 8px 2px;
-  margin: 0;
-}
-
-.bottom-nav button.active {
-  color: #C69AFF;
-}
 
 <style>
 * { box-sizing: border-box; }
@@ -94,16 +21,16 @@ body {
   max-width: 480px;
   min-height: 100vh;
   margin: auto;
-  padding: 30px 22px;
+  padding: 25px 18px;
 }
 
 .logo {
   text-align: center;
-  padding-top: 55px;
+  padding-top: 30px;
 }
 
 .logo h1 {
-  font-size: 46px;
+  font-size: 42px;
   color: #C69AFF;
   letter-spacing: 6px;
   margin-bottom: 8px;
@@ -118,11 +45,11 @@ body {
 .panel {
   background: #281A3D;
   border-radius: 20px;
-  padding: 25px;
-  margin-top: 40px;
+  padding: 20px;
+  margin-top: 25px;
 }
 
-h2 { font-size: 24px; }
+h2 { font-size: 22px; }
 
 .description {
   color: #C3B4D4;
@@ -131,7 +58,7 @@ h2 { font-size: 24px; }
 
 input {
   width: 100%;
-  padding: 15px;
+  padding: 14px;
   margin-top: 12px;
   border-radius: 10px;
   border: 1px solid #59446F;
@@ -142,11 +69,11 @@ input {
 
 button {
   width: 100%;
-  padding: 15px;
+  padding: 14px;
   border: none;
   border-radius: 11px;
-  margin-top: 14px;
-  font-size: 15px;
+  margin-top: 12px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -156,7 +83,7 @@ button {
   color: #241735;
 }
 
-.primary {
+.primary, .join-button {
   background: #8654C9;
   color: white;
 }
@@ -173,19 +100,7 @@ button {
   text-align: center;
   line-height: 1.5;
   margin-top: 16px;
-}
-
-.switch {
-  color: #D4B3FF;
-  text-align: center;
-  font-size: 14px;
-  margin-top: 20px;
-}
-
-.switch span {
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: underline;
+  overflow-wrap: anywhere;
 }
 
 .footer {
@@ -195,7 +110,126 @@ button {
   margin-top: 25px;
 }
 
-.hidden { display: none; }
+.hidden { display: none !important; }
+
+/* HOME */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-header h2 {
+  color: #C69AFF;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.profile-circle {
+  background: #8654C9;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.home-banner {
+  background: linear-gradient(135deg, #513078, #281A3D);
+  border-radius: 16px;
+  padding: 18px;
+  margin-top: 20px;
+}
+
+.section-title {
+  margin-top: 28px;
+  margin-bottom: 8px;
+}
+
+.room-card {
+  background: #190F28;
+  border: 1px solid #59446F;
+  border-radius: 15px;
+  padding: 16px;
+  margin-top: 14px;
+}
+
+.live-label {
+  color: #FF6B91;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.room-card h3 {
+  margin-bottom: 7px;
+}
+
+.room-card p {
+  font-size: 13px;
+  margin: 6px 0;
+  overflow-wrap: anywhere;
+}
+
+.room-info {
+  color: #C3B4D4;
+  font-size: 12px;
+}
+
+.join-button {
+  margin-top: 12px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 22px 12px;
+  color: #C3B4D4;
+  background: #190F28;
+  border: 1px dashed #59446F;
+  border-radius: 15px;
+  margin-top: 14px;
+  line-height: 1.6;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  gap: 4px;
+  margin-top: 25px;
+  padding: 10px 4px;
+  background: #190F28;
+  border-radius: 15px;
+}
+
+.bottom-nav button {
+  background: transparent;
+  color: #C3B4D4;
+  font-size: 11px;
+  padding: 8px 2px;
+  margin: 0;
+}
+
+.bottom-nav button.active {
+  color: #C69AFF;
+  background: #35234C;
+}
+
+.tab-content {
+  margin-top: 20px;
+}
+
+.small-note {
+  color: #A995BC;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #59446F;
+  margin: 18px 0;
+}
 </style>
 </head>
 
@@ -210,11 +244,11 @@ button {
 
 <section class="panel">
 
+<!-- WELCOME -->
 <div id="welcome">
   <h2>Welcome to BUGTAW</h2>
   <p class="description">
-    Connect, communicate and discover
-    new communities.
+    Connect, communicate and discover new communities.
   </p>
 
   <button class="google" onclick="googleLogin()">
@@ -230,6 +264,7 @@ button {
   </button>
 </div>
 
+<!-- SIGN UP -->
 <div id="signup" class="hidden">
   <h2>Create Account</h2>
   <p class="description">Join the BUGTAW community.</p>
@@ -239,15 +274,11 @@ button {
   <input id="signupPassword" type="password"
     placeholder="Password (at least 6 characters)">
 
-  <button class="primary" onclick="register()">
-    Sign Up
-  </button>
-
-  <button class="secondary" onclick="showForm('welcome')">
-    Back
-  </button>
+  <button class="primary" onclick="register()">Sign Up</button>
+  <button class="secondary" onclick="showForm('welcome')">Back</button>
 </div>
 
+<!-- LOGIN -->
 <div id="login" class="hidden">
   <h2>Welcome Back!</h2>
   <p class="description">Login to your BUGTAW account.</p>
@@ -255,16 +286,11 @@ button {
   <input id="loginEmail" type="email" placeholder="Email Address">
   <input id="loginPassword" type="password" placeholder="Password">
 
-  <button class="primary" onclick="login()">
-    Sign In
-  </button>
-
-  <button class="secondary" onclick="showForm('welcome')">
-    Back
-  </button>
+  <button class="primary" onclick="login()">Sign In</button>
+  <button class="secondary" onclick="showForm('welcome')">Back</button>
 </div>
 
-
+<!-- ACCOUNT / APP -->
 <div id="account" class="hidden">
 
   <div class="home-header">
@@ -272,52 +298,96 @@ button {
       <h2>BUGTAW</h2>
       <p class="description">YOUR VOICE. YOUR WORLD.</p>
     </div>
-    <div class="profile-circle">B</div>
+    <div class="profile-circle" id="profileInitial">B</div>
   </div>
 
-  <div class="home-banner">
-    <h2>Welcome to BUGTAW!</h2>
-    <p class="description" id="userEmail"></p>
-    <p class="description">
-      Find your community. Join the conversation.
+  <!-- HOME TAB -->
+  <div id="homeTab" class="tab-content">
+
+    <div class="home-banner">
+      <h2>Welcome to BUGTAW!</h2>
+      <p class="description" id="userEmail"></p>
+      <p class="description">
+        Find your community. Join the conversation.
+      </p>
+    </div>
+
+    <h2 class="section-title">Live Rooms</h2>
+    <p class="small-note">
+      Discover active rooms and join the conversation.
     </p>
-  </div>
 
-  <h2>Live Rooms</h2>
-
-  <div class="room-card">
-    <span class="live-label">● LIVE ROOM</span>
-    <h3>Welcome Room</h3>
-    <p class="description">BUGTAW Community</p>
-    <p class="description">Public Room</p>
-    <button class="join-button"
-      onclick="message('Live rooms are coming soon!')">
-      Join Room
+    <button class="primary" onclick="loadRooms()">
+      ↻ Refresh Rooms
     </button>
-  </div>
 
-  <div class="room-card">
-    <span class="live-label">● FEATURED</span>
-    <h3>Meet New Friends</h3>
-    <p class="description">Discover new communities.</p>
-    <button class="join-button"
-      onclick="message('Discover is coming soon!')">
-      Discover
+    <div id="roomList">
+      <div class="empty-state">Loading rooms...</div>
+    </div>
+
+    <hr>
+
+    <h2>Create a Room</h2>
+    <p class="small-note">
+      Start a public room for the BUGTAW community.
+    </p>
+
+    <input id="newRoomName" placeholder="Room Name">
+    <input id="newRoomTopic" placeholder="Room Topic">
+
+    <button class="primary" onclick="createRoom()">
+      + Create Room
     </button>
+
   </div>
 
+  <!-- DISCOVERY TAB -->
+  <div id="discoveryTab" class="tab-content hidden">
+    <h2>Discovery</h2>
+    <p class="description">
+      Explore active BUGTAW rooms and discover new communities.
+    </p>
+    <div id="discoveryRooms"></div>
+  </div>
+
+  <!-- MESSAGE TAB -->
+  <div id="messageTab" class="tab-content hidden">
+    <h2>Messages</h2>
+    <div class="empty-state">
+      Your messages will appear here.<br>
+      Messaging feature is coming soon.
+    </div>
+  </div>
+
+  <!-- PROFILE TAB -->
+  <div id="profileTab" class="tab-content hidden">
+    <h2>My Profile</h2>
+
+    <div class="room-card">
+      <p class="small-note">Logged in account</p>
+      <p id="profileEmail"></p>
+    </div>
+
+    <button class="secondary" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- BOTTOM NAVIGATION -->
   <div class="bottom-nav">
-    <button class="active"
-      onclick="message('You are on Home.')">⌂<br>Home</button>
-    <button onclick="message('Discover is coming soon!')">◈<br>Discover</button>
-    <button onclick="message('Messages are coming soon!')">✉<br>Messages</button>
-    <button onclick="message('Profile is coming soon!')">◎<br>Profile</button>
+    <button class="active" onclick="showTab('home', this)">
+      ⌂<br>Home
+    </button>
+    <button onclick="showTab('discovery', this)">
+      ◈<br>Discover
+    </button>
+    <button onclick="showTab('message', this)">
+      ✉<br>Messages
+    </button>
+    <button onclick="showTab('profile', this)">
+      ◎<br>Profile
+    </button>
   </div>
-
-  <button class="secondary" onclick="logout()">Logout</button>
 
 </div>
-
 
 <p id="message" class="message"></p>
 
@@ -331,24 +401,64 @@ button {
 import { createClient }
 from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-// BUGTAW SUPABASE CONNECTION
+/* SUPABASE CONNECTION
+   Palitan ng sarili mong existing Project URL at Publishable Key.
+*/
 const SUPABASE_URL = 'https://xlxwlxjqtwoiwavpgvwh.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_n8HpicWZ9_AhIhQ81Lv5PQ_PrIiyf9f';
 
 const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-window.showForm = function(form) {
-  ['welcome','signup','login','account'].forEach(id => {
-    document.getElementById(id).classList.add('hidden');
-  });
+let currentUser = null;
+let roomChannel = null;
+let memberChannel = null;
 
-  document.getElementById(form).classList.remove('hidden');
-  document.getElementById('message').textContent = '';
-};
+/* BASIC FUNCTIONS */
 
 function message(text) {
   document.getElementById('message').textContent = text;
 }
+
+window.showForm = function(form) {
+  ['welcome', 'signup', 'login', 'account'].forEach(id => {
+    document.getElementById(id).classList.add('hidden');
+  });
+
+  document.getElementById(form).classList.remove('hidden');
+  message('');
+};
+
+window.showTab = function(tab, button) {
+  ['home', 'discovery', 'message', 'profile'].forEach(name => {
+    document.getElementById(name + 'Tab').classList.add('hidden');
+  });
+
+  document.getElementById(tab + 'Tab').classList.remove('hidden');
+
+  document.querySelectorAll('.bottom-nav button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  button.classList.add('active');
+
+  if (tab === 'discovery') {
+    loadRooms();
+  }
+
+  message('');
+};
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  })[char]);
+}
+
+/* SIGN UP */
 
 window.register = async function() {
   const name = document.getElementById('signupName').value.trim();
@@ -387,6 +497,8 @@ window.register = async function() {
   }
 };
 
+/* LOGIN */
+
 window.login = async function() {
   const email = document.getElementById('loginEmail').value.trim();
   const password = document.getElementById('loginPassword').value;
@@ -403,10 +515,10 @@ window.login = async function() {
     password
   });
 
-  if (error) {
-    message(error.message);
-  }
+  if (error) message(error.message);
 };
+
+/* GOOGLE LOGIN */
 
 window.googleLogin = async function() {
   message('Connecting to Google...');
@@ -421,23 +533,252 @@ window.googleLogin = async function() {
   if (error) message(error.message);
 };
 
+/* LOGOUT */
+
 window.logout = async function() {
   const { error } = await db.auth.signOut();
 
-  if (error) {
-    message(error.message);
-  }
+  if (error) message(error.message);
 };
 
+/* DISPLAY ACCOUNT */
+
 function displayAccount(session) {
-  if (session) {
-    window.showForm('account');
-    document.getElementById('userEmail').textContent =
-      session.user.email || 'Logged in';
+  currentUser = session?.user || null;
+
+  if (currentUser) {
+    showAccount();
   } else {
-    window.showForm('welcome');
+    unsubscribeRealtime();
+    showForm('welcome');
   }
 }
+
+function showAccount() {
+  window.showForm('account');
+
+  const email = currentUser.email || 'Logged in';
+  const initial = (currentUser.user_metadata?.full_name || email)
+    .charAt(0).toUpperCase();
+
+  document.getElementById('userEmail').textContent = email;
+  document.getElementById('profileEmail').textContent = email;
+  document.getElementById('profileInitial').textContent = initial;
+
+  loadRooms();
+  subscribeRealtime();
+}
+
+/* LOAD ACTIVE ROOMS */
+
+window.loadRooms = async function() {
+  const roomList = document.getElementById('roomList');
+  const discoveryRooms = document.getElementById('discoveryRooms');
+
+  roomList.innerHTML =
+    '<div class="empty-state">Loading rooms...</div>';
+
+  const { data: rooms, error } = await db
+    .from('rooms')
+    .select('id, room_name, host_id, topic, is_active, created_at')
+    .eq('is_active', true)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    roomList.innerHTML =
+      '<div class="empty-state">Unable to load rooms: ' +
+      escapeHTML(error.message) + '</div>';
+
+    discoveryRooms.innerHTML = roomList.innerHTML;
+    return;
+  }
+
+  if (!rooms || rooms.length === 0) {
+    const empty = `
+      <div class="empty-state">
+        No active rooms yet.<br>
+        Be the first to create a room!
+      </div>`;
+
+    roomList.innerHTML = empty;
+    discoveryRooms.innerHTML = empty;
+    return;
+  }
+
+  /* Get member records for participant counts */
+  const roomIds = rooms.map(room => room.id);
+
+  const { data: members, error: memberError } = await db
+    .from('room_members')
+    .select('room_id, user_id')
+    .in('room_id', roomIds);
+
+  if (memberError) {
+    console.error('Member count error:', memberError.message);
+  }
+
+  const roomHTML = rooms.map(room => {
+    const count = (members || []).filter(
+      member => member.room_id === room.id
+    ).length;
+
+    const alreadyJoined = (members || []).some(
+      member =>
+        member.room_id === room.id &&
+        member.user_id === currentUser?.id
+    );
+
+    return `
+      <div class="room-card">
+        <span class="live-label">● ACTIVE ROOM</span>
+
+        <h3>${escapeHTML(room.room_name)}</h3>
+
+        <p class="description">
+          ${escapeHTML(room.topic || 'BUGTAW Community')}
+        </p>
+
+        <p class="room-info">
+          Host ID: ${escapeHTML(String(room.host_id).slice(0, 8))}...
+        </p>
+
+        <p class="room-info">
+          👥 ${count} member(s)
+        </p>
+
+        <button class="join-button"
+          onclick="joinRoom('${escapeHTML(room.id)}')">
+          ${alreadyJoined ? 'Joined ✓' : 'Join Room'}
+        </button>
+      </div>
+    `;
+  }).join('');
+
+  roomList.innerHTML = roomHTML;
+  discoveryRooms.innerHTML = roomHTML;
+};
+
+/* CREATE ROOM */
+
+window.createRoom = async function() {
+  if (!currentUser) {
+    message('Please login first.');
+    return;
+  }
+
+  const roomName =
+    document.getElementById('newRoomName').value.trim();
+
+  const topic =
+    document.getElementById('newRoomTopic').value.trim();
+
+  if (!roomName) {
+    message('Please enter a room name.');
+    return;
+  }
+
+  message('Creating room...');
+
+  const { error } = await db
+    .from('rooms')
+    .insert({
+      id: crypto.randomUUID(),
+      room_name: roomName,
+      host_id: currentUser.id,
+      topic: topic || 'BUGTAW Community',
+      is_active: true
+    });
+
+  if (error) {
+    message('Create room error: ' + error.message);
+    return;
+  }
+
+  document.getElementById('newRoomName').value = '';
+  document.getElementById('newRoomTopic').value = '';
+
+  message('Room created successfully!');
+  await loadRooms();
+};
+
+/* JOIN ROOM AS LISTENER */
+
+window.joinRoom = async function(roomId) {
+  if (!currentUser) {
+    message('Please login first.');
+    return;
+  }
+
+  message('Joining room...');
+
+  const { error } = await db
+    .from('room_members')
+    .insert({
+      room_id: roomId,
+      user_id: currentUser.id,
+      role: 'listener'
+    });
+
+  if (error) {
+    if (error.code === '23505') {
+      message('You have already joined this room.');
+    } else {
+      message('Unable to join: ' + error.message);
+    }
+
+    await loadRooms();
+    return;
+  }
+
+  message('You joined the room as a listener!');
+  await loadRooms();
+};
+
+/* REALTIME */
+
+function subscribeRealtime() {
+  unsubscribeRealtime();
+
+  roomChannel = db
+    .channel('bugtaw-rooms-live')
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'rooms'
+      },
+      () => loadRooms()
+    )
+    .subscribe();
+
+  memberChannel = db
+    .channel('bugtaw-members-live')
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'room_members'
+      },
+      () => loadRooms()
+    )
+    .subscribe();
+}
+
+function unsubscribeRealtime() {
+  if (roomChannel) {
+    db.removeChannel(roomChannel);
+    roomChannel = null;
+  }
+
+  if (memberChannel) {
+    db.removeChannel(memberChannel);
+    memberChannel = null;
+  }
+}
+
+/* AUTH STATE */
 
 db.auth.onAuthStateChange((_event, session) => {
   displayAccount(session);
