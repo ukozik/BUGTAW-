@@ -370,6 +370,73 @@ hr {
 
     <button class="secondary" onclick="logout()">Logout</button>
   </div>
+  
+  <style>
+/* ACTUAL ROOM SCREEN */
+.room-screen {
+  background: #190F28;
+  border: 1px solid #59446F;
+  border-radius: 16px;
+  padding: 17px;
+  margin-top: 18px;
+}
+
+.room-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.back-button {
+  width: auto;
+  padding: 9px 14px;
+  margin: 0;
+  background: #3A2851;
+  color: #E0C8FF;
+}
+
+.room-avatar {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  background: #8654C9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.member-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #493456;
+}
+
+.member-row:last-child {
+  border-bottom: 0;
+}
+
+.member-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.member-details p {
+  margin: 4px 0;
+  color: #C3B4D4;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.member-role {
+  color: #C69AFF;
+  font-size: 10px;
+  font-weight: bold;
+}
 
   <!-- BOTTOM NAVIGATION -->
   <div class="bottom-nav">
