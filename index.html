@@ -1,81 +1,121 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#170D29">
-<title>BUGTAW - Your Voice, Your World</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#100B1C">
+<title>Your Voice Community</title>
 
 <style>
+:root {
+  --bg: #100B1C;
+  --surface: #1B1429;
+  --surface-2: #251A37;
+  --surface-3: #302044;
+  --purple: #A879F5;
+  --gold: #E8C77A;
+  --muted: #B9ADC9;
+  --line: rgba(255,255,255,.08);
+  --danger: #FF718D;
+}
+
 * { box-sizing: border-box; }
 
-body {
+html, body {
   margin: 0;
-  background: #170D29;
-  color: white;
+  width: 100%;
+  min-height: 100%;
+  background: var(--bg);
+  color: #fff;
   font-family: Arial, sans-serif;
 }
 
-.app {
-  max-width: 480px;
+body {
   min-height: 100vh;
-  margin: auto;
-  padding: 25px 18px;
+  min-height: 100dvh;
 }
 
-.logo {
-  text-align: center;
-  padding-top: 30px;
-}
-
-.logo h1 {
-  font-size: 42px;
-  color: #C69AFF;
-  letter-spacing: 6px;
-  margin-bottom: 8px;
-}
-
-.logo p {
-  color: #BCA5D6;
-  font-size: 11px;
-  letter-spacing: 3px;
-}
-
-.panel {
-  background: #281A3D;
-  border-radius: 20px;
-  padding: 20px;
-  margin-top: 25px;
-}
-
-h2 { font-size: 22px; }
-
-.description {
-  color: #C3B4D4;
-  line-height: 1.6;
-}
-
-input {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  border-radius: 10px;
-  border: 1px solid #59446F;
-  background: #190F28;
-  color: white;
-  font-size: 15px;
+button, input {
+  font: inherit;
 }
 
 button {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 11px;
-  margin-top: 12px;
-  font-size: 14px;
-  font-weight: bold;
   cursor: pointer;
+  border: 0;
+}
+
+.hidden { display: none !important; }
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: max(18px, env(safe-area-inset-top)) 16px
+           calc(92px + env(safe-area-inset-bottom));
+}
+
+.panel {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, p { margin-top: 0; }
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.description {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.small-note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: #130E20;
+  color: white;
+  outline: none;
+  font-size: 15px;
+}
+
+input:focus {
+  border-color: var(--purple);
+}
+
+button.primary,
+button.secondary,
+button.google {
+  width: 100%;
+  padding: 15px;
+  margin-top: 12px;
+  border-radius: 13px;
+  font-weight: bold;
+}
+
+.primary {
+  background: linear-gradient(135deg, #A879F5, #7445BC);
+  color: white;
+}
+
+.secondary {
+  background: var(--surface-3);
+  color: #E5D5FF;
+  border: 1px solid rgba(168,121,245,.25);
 }
 
 .google {
@@ -83,341 +123,333 @@ button {
   color: #241735;
 }
 
-.primary, .join-button {
-  background: #8654C9;
-  color: white;
-}
-
-.secondary {
-  background: #3A2851;
-  color: #E0C8FF;
-  border: 1px solid #75549A;
-}
-
 .message {
-  font-size: 13px;
-  color: #D9C1F5;
+  max-width: 760px;
+  margin: 16px auto 0;
   text-align: center;
+  color: var(--gold);
+  font-size: 13px;
   line-height: 1.5;
-  margin-top: 16px;
   overflow-wrap: anywhere;
 }
 
 .footer {
   text-align: center;
-  color: #9F8BAC;
-  font-size: 12px;
-  margin-top: 25px;
+  color: #82758F;
+  font-size: 11px;
+  margin-top: 20px;
 }
 
-.hidden { display: none !important; }
+/* AUTH SCREENS */
+
+.auth-screen {
+  width: 100%;
+  max-width: 440px;
+  margin: 8vh auto 0;
+  padding: 26px 22px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.auth-mark {
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 18px;
+  color: var(--gold);
+}
+
+.auth-screen h2 {
+  text-align: center;
+}
+
+.auth-screen .description {
+  text-align: center;
+}
 
 /* HOME */
+
 .home-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 22px;
 }
 
 .home-header h2 {
-  color: #C69AFF;
-  letter-spacing: 2px;
-  margin-bottom: 5px;
+  color: var(--gold);
+  margin: 0 0 5px;
+  letter-spacing: .5px;
 }
 
 .profile-circle {
-  background: #8654C9;
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #A879F5, #62408F);
   font-weight: bold;
 }
 
 .home-banner {
-  background: linear-gradient(135deg, #513078, #281A3D);
-  border-radius: 16px;
-  padding: 18px;
-  margin-top: 20px;
+  padding: 22px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #493064, #21172F 75%);
+  border: 1px solid rgba(232,199,122,.15);
+}
+
+.home-banner h2 {
+  color: var(--gold);
 }
 
 .section-title {
-  margin-top: 28px;
-  margin-bottom: 8px;
+  margin: 26px 0 8px;
 }
 
 .room-card {
-  background: #190F28;
-  border: 1px solid #59446F;
-  border-radius: 15px;
-  padding: 16px;
-  margin-top: 14px;
-}
-
-.live-label {
-  color: #FF6B91;
-  font-size: 12px;
-  font-weight: bold;
+  margin-top: 13px;
+  padding: 17px;
+  border-radius: 17px;
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 
 .room-card h3 {
-  margin-bottom: 7px;
+  margin: 9px 0 7px;
 }
 
 .room-card p {
   font-size: 13px;
-  margin: 6px 0;
+  line-height: 1.5;
   overflow-wrap: anywhere;
 }
 
+.live-label {
+  color: var(--danger);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: .6px;
+}
+
 .room-info {
-  color: #C3B4D4;
-  font-size: 12px;
+  color: var(--muted);
+  font-size: 12px !important;
+  margin: 6px 0;
 }
 
 .join-button {
-  margin-top: 12px;
+  width: 100%;
+  padding: 13px;
+  margin-top: 10px;
+  border-radius: 12px;
+  background: var(--surface-3);
+  color: #E8D8FF;
+  font-weight: bold;
 }
 
 .empty-state {
-  text-align: center;
-  padding: 22px 12px;
-  color: #C3B4D4;
-  background: #190F28;
-  border: 1px dashed #59446F;
-  border-radius: 15px;
   margin-top: 14px;
+  padding: 24px 16px;
+  border: 1px dashed rgba(255,255,255,.15);
+  border-radius: 16px;
+  text-align: center;
+  color: var(--muted);
   line-height: 1.6;
+  font-size: 13px;
 }
 
+.tab-content { margin-top: 18px; }
+
+.create-panel {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* BOTTOM NAV */
+
 .bottom-nav {
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   justify-content: space-around;
   gap: 4px;
-  margin-top: 25px;
-  padding: 10px 4px;
-  background: #190F28;
-  border-radius: 15px;
+  padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(20,14,31,.96);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(16px);
 }
 
 .bottom-nav button {
-  background: transparent;
-  color: #C3B4D4;
-  font-size: 11px;
+  flex: 1;
   padding: 8px 2px;
   margin: 0;
+  background: transparent;
+  color: #9588A8;
+  font-size: 11px;
+  border-radius: 12px;
 }
 
 .bottom-nav button.active {
-  color: #C69AFF;
-  background: #35234C;
+  color: var(--gold);
+  background: rgba(232,199,122,.09);
 }
 
-.tab-content {
-  margin-top: 20px;
-}
+/* ROOM */
 
-.small-note {
-  color: #A995BC;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-hr {
-  border: 0;
-  border-top: 1px solid #59446F;
-  margin: 18px 0;
-}
-</style>
-</head>
-
-<body>
-
-<main class="app">
-
-<header class="logo">
-  <h1>BUGTAW</h1>
-  <p>YOUR VOICE. YOUR WORLD.</p>
-</header>
-
-<section class="panel">
-
-<!-- WELCOME -->
-<div id="welcome">
-  <h2>Welcome to BUGTAW</h2>
-  <p class="description">
-    Connect, communicate and discover new communities.
-  </p>
-
-  <button class="google" onclick="googleLogin()">
-    Continue with Google
-  </button>
-
-  <button class="primary" onclick="showForm('signup')">
-    Create Account
-  </button>
-
-  <button class="secondary" onclick="showForm('login')">
-    Continue with Email
-  </button>
-</div>
-
-<!-- SIGN UP -->
-<div id="signup" class="hidden">
-  <h2>Create Account</h2>
-  <p class="description">Join the BUGTAW community.</p>
-
-  <input id="signupName" placeholder="Your Name">
-  <input id="signupEmail" type="email" placeholder="Email Address">
-  <input id="signupPassword" type="password"
-    placeholder="Password (at least 6 characters)">
-
-  <button class="primary" onclick="register()">Sign Up</button>
-  <button class="secondary" onclick="showForm('welcome')">Back</button>
-</div>
-
-<!-- LOGIN -->
-<div id="login" class="hidden">
-  <h2>Welcome Back!</h2>
-  <p class="description">Login to your BUGTAW account.</p>
-
-  <input id="loginEmail" type="email" placeholder="Email Address">
-  <input id="loginPassword" type="password" placeholder="Password">
-
-  <button class="primary" onclick="login()">Sign In</button>
-  <button class="secondary" onclick="showForm('welcome')">Back</button>
-</div>
-
-<!-- ACCOUNT / APP -->
-<div id="account" class="hidden">
-
-  <div class="home-header">
-    <div>
-      <h2>BUGTAW</h2>
-      <p class="description">YOUR VOICE. YOUR WORLD.</p>
-    </div>
-    <div class="profile-circle" id="profileInitial">B</div>
-  </div>
-
-  <!-- HOME TAB -->
-  <div id="homeTab" class="tab-content">
-
-    <div class="home-banner">
-      <h2>Welcome to BUGTAW!</h2>
-      <p class="description" id="userEmail"></p>
-      <p class="description">
-        Find your community. Join the conversation.
-      </p>
-    </div>
-
-    <h2 class="section-title">Live Rooms</h2>
-    <p class="small-note">
-      Discover active rooms and join the conversation.
-    </p>
-
-    <button class="primary" onclick="loadRooms()">
-      ↻ Refresh Rooms
-    </button>
-
-    <div id="roomList">
-      <div class="empty-state">Loading rooms...</div>
-    </div>
-
-    <hr>
-
-    <h2>Create a Room</h2>
-    <p class="small-note">
-      Start a public room for the BUGTAW community.
-    </p>
-
-    <input id="newRoomName" placeholder="Room Name">
-    <input id="newRoomTopic" placeholder="Room Topic">
-
-    <button class="primary" onclick="createRoom()">
-      + Create Room
-    </button>
-
-  </div>
-
-  <!-- DISCOVERY TAB -->
-  <div id="discoveryTab" class="tab-content hidden">
-    <h2>Discovery</h2>
-    <p class="description">
-      Explore active BUGTAW rooms and discover new communities.
-    </p>
-    <div id="discoveryRooms"></div>
-  </div>
-
-  <!-- MESSAGE TAB -->
-  <div id="messageTab" class="tab-content hidden">
-    <h2>Messages</h2>
-    <div class="empty-state">
-      Your messages will appear here.<br>
-      Messaging feature is coming soon.
-    </div>
-  </div>
-
-  <!-- PROFILE TAB -->
-  <div id="profileTab" class="tab-content hidden">
-    <h2>My Profile</h2>
-
-    <div class="room-card">
-      <p class="small-note">Logged in account</p>
-      <p id="profileEmail"></p>
-    </div>
-
-    <button class="secondary" onclick="logout()">Logout</button>
-  </div> 
-  <style>
-    
-/* ACTUAL ROOM SCREEN */
 .room-screen {
-  background: #190F28;
-  border: 1px solid #59446F;
-  border-radius: 16px;
-  padding: 17px;
-  margin-top: 18px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 24px;
 }
 
 .room-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .back-button {
   width: auto;
-  padding: 9px 14px;
+  padding: 10px 14px;
   margin: 0;
-  background: #3A2851;
-  color: #E0C8FF;
+  border-radius: 12px;
+  background: var(--surface-3);
+  color: white;
 }
 
-.room-avatar {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
-  border-radius: 50%;
-  background: #8654C9;
+.room-heading {
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #38254E, #1B1429);
+  border: 1px solid rgba(232,199,122,.15);
+}
+
+.room-heading h2 {
+  color: var(--gold);
+  font-size: 24px;
+  overflow-wrap: anywhere;
+}
+
+.room-heading p {
+  margin-bottom: 0;
+}
+
+.host-area {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.host-avatar {
+  width: 76px;
+  height: 76px;
+  margin: 12px auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: linear-gradient(135deg, #A879F5, #4B3268);
+  font-size: 25px;
   font-weight: bold;
+  box-shadow: 0 0 24px rgba(232,199,122,.12);
+}
+
+.host-label {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.seat-title {
+  margin: 28px 0 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 8px;
+}
+
+.seat {
+  min-width: 0;
+  padding: 13px 4px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.seat-avatar {
+  width: 43px;
+  height: 43px;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-3);
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.seat strong {
+  display: block;
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.seat span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.seat.occupied {
+  border-color: rgba(168,121,245,.4);
+}
+
+.member-list {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 17px;
+  background: var(--surface);
 }
 
 .member-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
   padding: 12px 0;
-  border-bottom: 1px solid #493456;
+  border-bottom: 1px solid var(--line);
 }
 
-.member-row:last-child {
-  border-bottom: 0;
+.member-row:last-child { border-bottom: 0; }
+
+.room-avatar {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-3);
 }
 
 .member-details {
@@ -426,86 +458,235 @@ hr {
 }
 
 .member-details p {
-  margin: 4px 0;
-  color: #C3B4D4;
-  font-size: 12px;
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 11px;
   overflow-wrap: anywhere;
 }
 
 .member-role {
-  color: #C69AFF;
+  color: var(--gold);
   font-size: 10px;
   font-weight: bold;
 }
-    </style>
-  
-<!-- ACTUAL ROOM SCREEN -->
-<div id="roomView" class="room-screen hidden">
 
+.room-controls {
+  position: sticky;
+  bottom: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 22px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(27,20,41,.96);
+  backdrop-filter: blur(12px);
+}
+
+.room-control {
+  min-width: 0;
+  padding: 12px 3px;
+  border-radius: 12px;
+  background: var(--surface-3);
+  color: white;
+  font-size: 11px;
+}
+
+.room-control .control-icon {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.leave-button {
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 13px;
+  background: rgba(255,113,141,.12);
+  color: #FF9BAD;
+  font-weight: bold;
+}
+
+@media (max-width: 360px) {
+  .app { padding-left: 12px; padding-right: 12px; }
+  .seat-grid { gap: 8px 5px; }
+  .seat { padding: 10px 2px; }
+  .seat-avatar { width: 36px; height: 36px; }
+  .room-control { font-size: 10px; }
+}
+</style>
+</head>
+
+<body>
+<main class="app">
+<section class="panel">
+
+<!-- WELCOME -->
+<div id="welcome" class="auth-screen">
+  <div class="auth-mark">✦</div>
+  <h2>Welcome</h2>
+  <p class="description">Connect, communicate, and discover new communities.</p>
+
+  <button class="google" onclick="googleLogin()">Continue with Google</button>
+  <button class="primary" onclick="showForm('signup')">Create Account</button>
+  <button class="secondary" onclick="showForm('login')">Continue with Email</button>
+</div>
+
+<!-- SIGN UP -->
+<div id="signup" class="auth-screen hidden">
+  <h2>Create Account</h2>
+  <p class="description">Join the community.</p>
+  <input id="signupName" placeholder="Your Name">
+  <input id="signupEmail" type="email" placeholder="Email Address">
+  <input id="signupPassword" type="password" placeholder="Password (at least 6 characters)">
+  <button class="primary" onclick="register()">Sign Up</button>
+  <button class="secondary" onclick="showForm('welcome')">Back</button>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="auth-screen hidden">
+  <h2>Welcome Back</h2>
+  <p class="description">Sign in to continue.</p>
+  <input id="loginEmail" type="email" placeholder="Email Address">
+  <input id="loginPassword" type="password" placeholder="Password">
+  <button class="primary" onclick="login()">Sign In</button>
+  <button class="secondary" onclick="showForm('welcome')">Back</button>
+</div>
+
+<!-- MAIN ACCOUNT -->
+<div id="account" class="hidden">
+
+  <header class="home-header">
+    <div>
+      <h2>Your Community</h2>
+      <p class="small-note">Find your people. Join the conversation.</p>
+    </div>
+    <div class="profile-circle" id="profileInitial">U</div>
+  </header>
+
+  <!-- HOME -->
+  <div id="homeTab" class="tab-content">
+    <div class="home-banner">
+      <h2>Welcome!</h2>
+      <p class="description" id="userEmail"></p>
+      <p class="description">Discover rooms and meet new people.</p>
+    </div>
+
+    <h2 class="section-title">Live Rooms</h2>
+    <p class="small-note">Explore active conversations.</p>
+
+    <button class="primary" onclick="loadRooms()">↻ Refresh Rooms</button>
+
+    <div id="roomList">
+      <div class="empty-state">Loading rooms...</div>
+    </div>
+
+    <div class="create-panel">
+      <h2>Create a Room</h2>
+      <p class="small-note">Start a public room with your own room name and topic.</p>
+      <input id="newRoomName" placeholder="Room Name">
+      <input id="newRoomTopic" placeholder="Room Topic">
+      <button class="primary" onclick="createRoom()">＋ Create Room</button>
+    </div>
+  </div>
+
+  <!-- DISCOVERY -->
+  <div id="discoveryTab" class="tab-content hidden">
+    <h2>Discover</h2>
+    <p class="description">Explore active rooms and communities.</p>
+    <div id="discoveryRooms"></div>
+  </div>
+
+  <!-- MESSAGES -->
+  <div id="messageTab" class="tab-content hidden">
+    <h2>Messages</h2>
+    <div class="empty-state">Your messages will appear here. Messaging is coming soon.</div>
+  </div>
+
+  <!-- PROFILE -->
+  <div id="profileTab" class="tab-content hidden">
+    <h2>My Profile</h2>
+    <div class="room-card">
+      <p class="small-note">Logged in account</p>
+      <p id="profileEmail"></p>
+    </div>
+    <button class="secondary" onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<!-- ROOM VIEW -->
+<div id="roomView" class="room-screen hidden">
   <div class="room-top">
-    <button class="back-button" onclick="closeRoom()">
-      ← Back
-    </button>
+    <button class="back-button" onclick="closeRoom()">← Back</button>
     <span class="live-label">● ROOM OPEN</span>
   </div>
 
-  <h2 id="roomTitle">Room Name</h2>
-  <p class="description" id="roomTopic"></p>
+  <div class="room-heading">
+    <h2 id="roomTitle">Room Name</h2>
+    <p class="description" id="roomTopic"></p>
+  </div>
 
-  <hr>
+  <div class="host-area">
+    <div class="host-label">ROOM HOST</div>
+    <div class="host-avatar" id="roomHostAvatar">H</div>
+    <strong id="roomHostName">Room Host</strong>
+  </div>
 
-  <h3>Room Host</h3>
-  <div id="roomHost"></div>
+  <div class="seat-title">
+    <h3>Speaker Seats</h3>
+    <span class="small-note">8 seats</span>
+  </div>
 
-  <hr>
+  <div id="speakerSeats" class="seat-grid"></div>
 
-  <h3>Members <span id="roomMemberCount"></span></h3>
-  <div id="roomMemberList"></div>
+  <div class="member-list">
+    <h3>Room Members <span id="roomMemberCount"></span></h3>
+    <div id="roomMemberList"></div>
+  </div>
 
-  <hr>
-
-  <p class="small-note">
-    You are connected to this room's member list.
-    Live audio is not connected yet.
+  <p class="small-note" style="margin-top:16px;text-align:center">
+    Room membership is connected. Live audio is not connected yet.
   </p>
 
-  <button class="secondary" onclick="leaveRoom()">
-    Leave Room
-  </button>
-
-</div>
-  <!-- BOTTOM NAVIGATION -->
-  <div class="bottom-nav">
-    <button class="active" onclick="showTab('home', this)">
-      ⌂<br>Home
+  <div class="room-controls">
+    <button class="room-control" onclick="showRoomNotice('Chat feature is coming soon.')">
+      <span class="control-icon">▤</span>Chat
     </button>
-    <button onclick="showTab('discovery', this)">
-      ◈<br>Discover
+    <button class="room-control" onclick="showRoomNotice('Live microphone is not connected yet.')">
+      <span class="control-icon">🎙</span>Mic
     </button>
-    <button onclick="showTab('message', this)">
-      ✉<br>Messages
+    <button class="room-control" onclick="showRoomNotice('Gifts feature is coming soon.')">
+      <span class="control-icon">◇</span>Gifts
     </button>
-    <button onclick="showTab('profile', this)">
-      ◎<br>Profile
+    <button class="room-control" onclick="showRoomNotice('Room members are listed below.')">
+      <span class="control-icon">♙</span>Members
     </button>
   </div>
 
+  <button class="leave-button" onclick="leaveRoom()">Leave Room</button>
 </div>
 
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav hidden">
+  <button class="active" onclick="showTab('home', this)">⌂<br>Home</button>
+  <button onclick="showTab('discovery', this)">◈<br>Discover</button>
+  <button onclick="showTab('message', this)">✉<br>Messages</button>
+  <button onclick="showTab('profile', this)">◎<br>Profile</button>
+</nav>
+
 <p id="message" class="message"></p>
-
-</section>
-
 <p class="footer">Your community. Your voice.</p>
 
+</section>
 </main>
-
 <script type="module">
 import { createClient }
 from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
 /* SUPABASE CONNECTION
-   https://xlxwlxjqtwoiwavpgvwh.supabase.co.
+   Ilagay dito ang kasalukuyan mong project URL at publishable key.
 */
 const SUPABASE_URL = 'https://xlxwlxjqtwoiwavpgvwh.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_n8HpicWZ9_AhIhQ81Lv5PQ_PrIiyf9f';
@@ -513,14 +694,31 @@ const SUPABASE_KEY = 'sb_publishable_n8HpicWZ9_AhIhQ81Lv5PQ_PrIiyf9f';
 const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let currentUser = null;
+let activeRoomId = null;
 let roomChannel = null;
 let memberChannel = null;
 
 /* BASIC FUNCTIONS */
 
 function message(text) {
-  document.getElementById('message').textContent = text;
+  document.getElementById('message').textContent = text || '';
 }
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  })[char]);
+}
+
+window.showRoomNotice = function(text) {
+  message(text);
+};
+
+/* SHOW SCREENS */
 
 window.showForm = function(form) {
   ['welcome', 'signup', 'login', 'account'].forEach(id => {
@@ -528,10 +726,20 @@ window.showForm = function(form) {
   });
 
   document.getElementById(form).classList.remove('hidden');
+
+  const nav = document.querySelector('.bottom-nav');
+  if (form === 'account') {
+    nav.classList.remove('hidden');
+  } else {
+    nav.classList.add('hidden');
+  }
+
   message('');
 };
 
 window.showTab = function(tab, button) {
+  if (activeRoomId) return;
+
   ['home', 'discovery', 'message', 'profile'].forEach(name => {
     document.getElementById(name + 'Tab').classList.add('hidden');
   });
@@ -550,16 +758,6 @@ window.showTab = function(tab, button) {
 
   message('');
 };
-
-function escapeHTML(value) {
-  return String(value ?? '').replace(/[&<>"']/g, char => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  })[char]);
-}
 
 /* SIGN UP */
 
@@ -641,10 +839,12 @@ window.googleLogin = async function() {
 window.logout = async function() {
   const { error } = await db.auth.signOut();
 
-  if (error) message(error.message);
+  if (error) {
+    message(error.message);
+  }
 };
 
-/* DISPLAY ACCOUNT */
+/* AUTH STATE */
 
 function displayAccount(session) {
   currentUser = session?.user || null;
@@ -652,17 +852,18 @@ function displayAccount(session) {
   if (currentUser) {
     showAccount();
   } else {
+    activeRoomId = null;
     unsubscribeRealtime();
     showForm('welcome');
   }
 }
 
 function showAccount() {
-  window.showForm('account');
+  showForm('account');
 
   const email = currentUser.email || 'Logged in';
-  const initial = (currentUser.user_metadata?.full_name || email)
-    .charAt(0).toUpperCase();
+  const name = currentUser.user_metadata?.full_name || email;
+  const initial = name.charAt(0).toUpperCase();
 
   document.getElementById('userEmail').textContent = email;
   document.getElementById('profileEmail').textContent = email;
@@ -688,11 +889,12 @@ window.loadRooms = async function() {
     .order('created_at', { ascending: false });
 
   if (error) {
-    roomList.innerHTML =
+    const errorHTML =
       '<div class="empty-state">Unable to load rooms: ' +
       escapeHTML(error.message) + '</div>';
 
-    discoveryRooms.innerHTML = roomList.innerHTML;
+    roomList.innerHTML = errorHTML;
+    discoveryRooms.innerHTML = errorHTML;
     return;
   }
 
@@ -708,7 +910,6 @@ window.loadRooms = async function() {
     return;
   }
 
-  /* Get member records for participant counts */
   const roomIds = rooms.map(room => room.id);
 
   const { data: members, error: memberError } = await db
@@ -738,20 +939,14 @@ window.loadRooms = async function() {
         <h3>${escapeHTML(room.room_name)}</h3>
 
         <p class="description">
-          ${escapeHTML(room.topic || 'BUGTAW Community')}
+          ${escapeHTML(room.topic || 'Open conversation')}
         </p>
 
-        <p class="room-info">
-          Host ID: ${escapeHTML(String(room.host_id).slice(0, 8))}...
-        </p>
-
-        <p class="room-info">
-          👥 ${count} member(s)
-        </p>
+        <p class="room-info">👥 ${count} member(s)</p>
 
         <button class="join-button"
           onclick="joinRoom('${escapeHTML(room.id)}')">
-          ${alreadyJoined ? 'Joined ✓' : 'Join Room'}
+          ${alreadyJoined ? 'Open Room ✓' : 'Join Room'}
         </button>
       </div>
     `;
@@ -788,7 +983,7 @@ window.createRoom = async function() {
       id: crypto.randomUUID(),
       room_name: roomName,
       host_id: currentUser.id,
-      topic: topic || 'BUGTAW Community',
+      topic: topic || 'Open conversation',
       is_active: true
     });
 
@@ -804,10 +999,7 @@ window.createRoom = async function() {
   await loadRooms();
 };
 
-/* JOIN ROOM AS LISTENER */
-
-
-let activeRoomId = null;
+/* JOIN ROOM */
 
 window.joinRoom = async function(roomId) {
   if (!currentUser) {
@@ -862,19 +1054,24 @@ window.joinRoom = async function(roomId) {
   await openRoom(roomId);
 };
 
+/* OPEN ROOM */
+
 window.openRoom = async function(roomId) {
   activeRoomId = roomId;
 
-  document.getElementById('homeTab').classList.add('hidden');
-  document.getElementById('discoveryTab').classList.add('hidden');
-  document.getElementById('messageTab').classList.add('hidden');
-  document.getElementById('profileTab').classList.add('hidden');
+  ['homeTab', 'discoveryTab', 'messageTab', 'profileTab']
+    .forEach(id => {
+      document.getElementById(id).classList.add('hidden');
+    });
 
   document.querySelector('.bottom-nav').classList.add('hidden');
   document.getElementById('roomView').classList.remove('hidden');
 
+  message('');
   await loadRoomDetails();
 };
+
+/* LOAD ROOM DETAILS */
 
 window.loadRoomDetails = async function() {
   if (!activeRoomId) return;
@@ -905,44 +1102,66 @@ window.loadRoomDetails = async function() {
     room.room_name;
 
   document.getElementById('roomTopic').textContent =
-    room.topic || 'BUGTAW Community';
+    room.topic || 'Open conversation';
 
-  document.getElementById('roomHost').innerHTML = `
-    <div class="member-row">
-      <div class="room-avatar">H</div>
-      <div class="member-details">
-        <strong>${room.host_id === currentUser.id
-          ? 'You (Host)'
-          : 'Room Host'}</strong>
-        <p>Room owner</p>
-      </div>
-      <span class="member-role">HOST</span>
-    </div>
-  `;
+  const isHost = room.host_id === currentUser.id;
+  const hostName = isHost
+    ? (currentUser.user_metadata?.full_name || currentUser.email || 'You')
+    : 'Room Host';
 
-  const memberHTML = (members || []).map(member => `
-    <div class="member-row">
-      <div class="room-avatar">L</div>
-      <div class="member-details">
-        <strong>${member.user_id === currentUser.id
-          ? 'You'
-          : 'BUGTAW Member'}</strong>
-        <p>${member.role === 'speaker'
-          ? 'Speaker'
-          : 'Listener'}</p>
-      </div>
-      <span class="member-role">
-        ${escapeHTML(member.role.toUpperCase())}
-      </span>
+  document.getElementById('roomHostAvatar').textContent =
+    hostName.charAt(0).toUpperCase();
+
+  document.getElementById('roomHostName').textContent =
+    isHost ? hostName + ' (You)' : hostName;
+
+  /* Eight visual speaker seats.
+     These are placeholders until speaker-role controls are implemented.
+  */
+  const seatsHTML = Array.from({ length: 8 }, (_, index) => `
+    <div class="seat">
+      <div class="seat-avatar">＋</div>
+      <strong>Seat ${index + 1}</strong>
+      <span>Available</span>
     </div>
   `).join('');
 
+  document.getElementById('speakerSeats').innerHTML = seatsHTML;
+
+  /* Member list */
+
+  const memberHTML = (members || []).map(member => {
+    const isYou = member.user_id === currentUser.id;
+    const displayName = isYou
+      ? (currentUser.user_metadata?.full_name || 'You')
+      : 'Community Member';
+
+    return `
+      <div class="member-row">
+        <div class="room-avatar">
+          ${escapeHTML(displayName.charAt(0).toUpperCase())}
+        </div>
+
+        <div class="member-details">
+          <strong>${escapeHTML(isYou ? displayName + ' (You)' : displayName)}</strong>
+          <p>${escapeHTML(member.role || 'listener')}</p>
+        </div>
+
+        <span class="member-role">
+          ${escapeHTML(String(member.role || 'listener').toUpperCase())}
+        </span>
+      </div>
+    `;
+  }).join('');
+
   document.getElementById('roomMemberList').innerHTML =
-    memberHTML || '<p class="small-note">No listeners yet.</p>';
+    memberHTML || '<p class="small-note">No members yet.</p>';
 
   document.getElementById('roomMemberCount').textContent =
-    '(' + (members || []).length + ' members)';
+    '(' + (members || []).length + ')';
 };
+
+/* CLOSE ROOM */
 
 window.closeRoom = function() {
   activeRoomId = null;
@@ -952,8 +1171,17 @@ window.closeRoom = function() {
 
   document.getElementById('homeTab').classList.remove('hidden');
 
+  document.querySelectorAll('.bottom-nav button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  document.querySelector('.bottom-nav button').classList.add('active');
+
+  message('');
   loadRooms();
 };
+
+/* LEAVE ROOM */
 
 window.leaveRoom = async function() {
   if (!activeRoomId || !currentUser) return;
@@ -986,14 +1214,13 @@ window.leaveRoom = async function() {
   closeRoom();
 };
 
-
 /* REALTIME */
 
 function subscribeRealtime() {
   unsubscribeRealtime();
 
   roomChannel = db
-    .channel('bugtaw-rooms-live')
+    .channel('community-rooms-live')
     .on(
       'postgres_changes',
       {
@@ -1001,12 +1228,15 @@ function subscribeRealtime() {
         schema: 'public',
         table: 'rooms'
       },
-      () => loadRooms()
+      () => {
+        loadRooms();
+        if (activeRoomId) loadRoomDetails();
+      }
     )
     .subscribe();
 
   memberChannel = db
-    .channel('bugtaw-members-live')
+    .channel('community-members-live')
     .on(
       'postgres_changes',
       {
@@ -1014,7 +1244,10 @@ function subscribeRealtime() {
         schema: 'public',
         table: 'room_members'
       },
-      () => loadRooms()
+      () => {
+        loadRooms();
+        if (activeRoomId) loadRoomDetails();
+      }
     )
     .subscribe();
 }
@@ -1044,3 +1277,4 @@ displayAccount(session);
 
 </body>
 </html>
+
