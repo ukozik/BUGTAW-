@@ -7,6 +7,78 @@
 <meta name="theme-color" content="#170D29">
 <title>BUGTAW - Your Voice, Your World</title>
 
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-header h2 {
+  color: #C69AFF;
+  letter-spacing: 2px;
+}
+
+.profile-circle {
+  background: #8654C9;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.home-banner {
+  background: linear-gradient(135deg, #513078, #281A3D);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.room-card {
+  background: #190F28;
+  border: 1px solid #59446F;
+  border-radius: 15px;
+  padding: 17px;
+  margin-top: 14px;
+}
+
+.live-label {
+  color: #FF6B91;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.join-button {
+  background: #8654C9;
+  color: white;
+  padding: 11px;
+  margin-top: 12px;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+  margin-top: 25px;
+  padding: 15px 5px;
+  background: #281A3D;
+  border-radius: 15px;
+}
+
+.bottom-nav button {
+  background: transparent;
+  color: #C3B4D4;
+  font-size: 11px;
+  padding: 8px 2px;
+  margin: 0;
+}
+
+.bottom-nav button.active {
+  color: #C69AFF;
+}
+
 <style>
 * { box-sizing: border-box; }
 
@@ -191,11 +263,60 @@ button {
   </button>
 </div>
 
+
 <div id="account" class="hidden">
-  <h2>Welcome to BUGTAW!</h2>
-  <p class="description" id="userEmail"></p>
-  <button class="primary" onclick="logout()">Logout</button>
+
+  <div class="home-header">
+    <div>
+      <h2>BUGTAW</h2>
+      <p class="description">YOUR VOICE. YOUR WORLD.</p>
+    </div>
+    <div class="profile-circle">B</div>
+  </div>
+
+  <div class="home-banner">
+    <h2>Welcome to BUGTAW!</h2>
+    <p class="description" id="userEmail"></p>
+    <p class="description">
+      Find your community. Join the conversation.
+    </p>
+  </div>
+
+  <h2>Live Rooms</h2>
+
+  <div class="room-card">
+    <span class="live-label">● LIVE ROOM</span>
+    <h3>Welcome Room</h3>
+    <p class="description">BUGTAW Community</p>
+    <p class="description">Public Room</p>
+    <button class="join-button"
+      onclick="message('Live rooms are coming soon!')">
+      Join Room
+    </button>
+  </div>
+
+  <div class="room-card">
+    <span class="live-label">● FEATURED</span>
+    <h3>Meet New Friends</h3>
+    <p class="description">Discover new communities.</p>
+    <button class="join-button"
+      onclick="message('Discover is coming soon!')">
+      Discover
+    </button>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="active"
+      onclick="message('You are on Home.')">⌂<br>Home</button>
+    <button onclick="message('Discover is coming soon!')">◈<br>Discover</button>
+    <button onclick="message('Messages are coming soon!')">✉<br>Messages</button>
+    <button onclick="message('Profile is coming soon!')">◎<br>Profile</button>
+  </div>
+
+  <button class="secondary" onclick="logout()">Logout</button>
+
 </div>
+
 
 <p id="message" class="message"></p>
 
