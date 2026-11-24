@@ -979,6 +979,54 @@ window.logout = async function() {
   }
 };
 
+/* USER PROFILE */
+
+async function loadProfile() {
+  if (!currentUser) return;
+
+  const { data, error } = await db
+    .from('user_profiles')
+    .select('title, about')
+    .eq('user_id', currentUser.id)
+    .maybeSingle();
+
+  if (error) {
+    console.error('Profile loading error:', error.message);
+    return;
+  }
+
+  document.getElementById('profileTitle').value = data?.title || '';
+  document.getElementById('profileAbout').value = data?.about || '';
+}
+
+async function saveProfile() {
+  if (!currentUser) {
+    alert('Please login first.');
+    return;
+  }
+
+  const title = document.getElementById('profileTitle').value.trim();
+  const about = document.getElementById('profileAbout').value.trim();
+
+  const { error } = await db
+    .from('user_profiles')
+    .upsert({
+      user_id: currentUser.id,
+      title: title,
+      about: about,
+      updated_at: new Date().toISOString()
+    }, {
+      onConflict: 'user_id'
+    });
+
+  if (error) {
+    alert('Unable to save profile: ' + error.message);
+    return;
+  }
+
+  alert('Profile saved successfully!');
+    }
+    
 /* AUTH STATE */
 
 function displayAccount(session) {
@@ -1004,6 +1052,8 @@ function showAccount() {
   document.getElementById('profileEmail').textContent = email;
   document.getElementById('profileInitial').textContent = initial;
 
+  loadProfile();
+  
   loadRooms();
   subscribeRealtime();
 }
