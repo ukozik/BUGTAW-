@@ -2,119 +2,329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#170D29">
-  <title>BUGTAW - Your Voice, Your World</title>
-  <style>
-    * { box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#170D29">
+<title>BUGTAW - Your Voice, Your World</title>
 
-    body {
-      margin: 0;
-      background: #170D29;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    .app {
-      max-width: 480px;
-      min-height: 100vh;
-      margin: auto;
-      padding: 28px 20px;
-    }
+body {
+  margin: 0;
+  background: #170D29;
+  color: white;
+  font-family: Arial, sans-serif;
+}
 
-    .logo {
-      text-align: center;
-      padding-top: 65px;
-    }
+.app {
+  max-width: 480px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 30px 22px;
+}
 
-    .logo h1 {
-      font-size: 48px;
-      color: #C69AFF;
-      letter-spacing: 5px;
-      margin-bottom: 5px;
-    }
+.logo {
+  text-align: center;
+  padding-top: 55px;
+}
 
-    .logo p {
-      color: #BCA5D6;
-      letter-spacing: 3px;
-      font-size: 11px;
-    }
+.logo h1 {
+  font-size: 46px;
+  color: #C69AFF;
+  letter-spacing: 6px;
+  margin-bottom: 8px;
+}
 
-    .panel {
-      background: #281A3D;
-      border-radius: 20px;
-      padding: 25px;
-      margin-top: 55px;
-    }
+.logo p {
+  color: #BCA5D6;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
 
-    h2 { font-size: 24px; }
+.panel {
+  background: #281A3D;
+  border-radius: 20px;
+  padding: 25px;
+  margin-top: 40px;
+}
 
-    .description {
-      color: #C3B4D4;
-      line-height: 1.6;
-    }
+h2 { font-size: 24px; }
 
-    button {
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 12px;
-      margin-top: 15px;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.description {
+  color: #C3B4D4;
+  line-height: 1.6;
+}
 
-    .google {
-      background: white;
-      color: #241735;
-    }
+input {
+  width: 100%;
+  padding: 15px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid #59446F;
+  background: #190F28;
+  color: white;
+  font-size: 15px;
+}
 
-    .email {
-      background: #8654C9;
-      color: white;
-    }
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 11px;
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .footer {
-      text-align: center;
-      color: #9F8BAC;
-      font-size: 12px;
-      margin-top: 30px;
-    }
-  </style>
+.google {
+  background: white;
+  color: #241735;
+}
+
+.primary {
+  background: #8654C9;
+  color: white;
+}
+
+.secondary {
+  background: #3A2851;
+  color: #E0C8FF;
+  border: 1px solid #75549A;
+}
+
+.message {
+  font-size: 13px;
+  color: #D9C1F5;
+  text-align: center;
+  line-height: 1.5;
+  margin-top: 16px;
+}
+
+.switch {
+  color: #D4B3FF;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.switch span {
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.footer {
+  text-align: center;
+  color: #9F8BAC;
+  font-size: 12px;
+  margin-top: 25px;
+}
+
+.hidden { display: none; }
+</style>
 </head>
 
 <body>
-  <main class="app">
-    <header class="logo">
-      <h1>BUGTAW</h1>
-      <p>YOUR VOICE. YOUR WORLD.</p>
-    </header>
 
-    <section class="panel">
-      <h2>Welcome to BUGTAW</h2>
+<main class="app">
 
-      <p class="description">
-        Connect, communicate and discover
-        new communities.
-      </p>
+<header class="logo">
+  <h1>BUGTAW</h1>
+  <p>YOUR VOICE. YOUR WORLD.</p>
+</header>
 
-      <button class="google"
-        onclick="alert('Google login coming soon!')">
-        Continue with Google
-      </button>
+<section class="panel">
 
-      <button class="email"
-        onclick="alert('Email login coming soon!')">
-        Continue with Email
-      </button>
+<div id="welcome">
+  <h2>Welcome to BUGTAW</h2>
+  <p class="description">
+    Connect, communicate and discover
+    new communities.
+  </p>
 
-      <p class="footer">
-        Your community. Your voice.
-      </p>
-    </section>
-  </main>
+  <button class="google" onclick="googleLogin()">
+    Continue with Google
+  </button>
+
+  <button class="primary" onclick="showForm('signup')">
+    Create Account
+  </button>
+
+  <button class="secondary" onclick="showForm('login')">
+    Continue with Email
+  </button>
+</div>
+
+<div id="signup" class="hidden">
+  <h2>Create Account</h2>
+  <p class="description">Join the BUGTAW community.</p>
+
+  <input id="signupName" placeholder="Your Name">
+  <input id="signupEmail" type="email" placeholder="Email Address">
+  <input id="signupPassword" type="password"
+    placeholder="Password (at least 6 characters)">
+
+  <button class="primary" onclick="register()">
+    Sign Up
+  </button>
+
+  <button class="secondary" onclick="showForm('welcome')">
+    Back
+  </button>
+</div>
+
+<div id="login" class="hidden">
+  <h2>Welcome Back!</h2>
+  <p class="description">Login to your BUGTAW account.</p>
+
+  <input id="loginEmail" type="email" placeholder="Email Address">
+  <input id="loginPassword" type="password" placeholder="Password">
+
+  <button class="primary" onclick="login()">
+    Sign In
+  </button>
+
+  <button class="secondary" onclick="showForm('welcome')">
+    Back
+  </button>
+</div>
+
+<div id="account" class="hidden">
+  <h2>Welcome to BUGTAW!</h2>
+  <p class="description" id="userEmail"></p>
+  <button class="primary" onclick="logout()">Logout</button>
+</div>
+
+<p id="message" class="message"></p>
+
+</section>
+
+<p class="footer">Your community. Your voice.</p>
+
+</main>
+
+<script type="module">
+import { createClient }
+from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+// BUGTAW SUPABASE CONNECTION
+const SUPABASE_URL = 'https://xlxwlxjqtwoiwavpgvwh.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_n8HpicWZ9_AhIhQ81Lv5PQ_PrIiyf9f';
+
+const db = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+window.showForm = function(form) {
+  ['welcome','signup','login','account'].forEach(id => {
+    document.getElementById(id).classList.add('hidden');
+  });
+
+  document.getElementById(form).classList.remove('hidden');
+  document.getElementById('message').textContent = '';
+};
+
+function message(text) {
+  document.getElementById('message').textContent = text;
+}
+
+window.register = async function() {
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value;
+
+  if (!name || !email || !password) {
+    message('Please complete all fields.');
+    return;
+  }
+
+  if (password.length < 6) {
+    message('Password must have at least 6 characters.');
+    return;
+  }
+
+  message('Creating your account...');
+
+  const { data, error } = await db.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { full_name: name }
+    }
+  });
+
+  if (error) {
+    message(error.message);
+    return;
+  }
+
+  if (data.session) {
+    message('Account created successfully!');
+  } else {
+    message('Registration successful! Please check your email to confirm your account.');
+  }
+};
+
+window.login = async function() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  if (!email || !password) {
+    message('Enter your email and password.');
+    return;
+  }
+
+  message('Signing in...');
+
+  const { error } = await db.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    message(error.message);
+  }
+};
+
+window.googleLogin = async function() {
+  message('Connecting to Google...');
+
+  const { error } = await db.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.origin
+    }
+  });
+
+  if (error) message(error.message);
+};
+
+window.logout = async function() {
+  const { error } = await db.auth.signOut();
+
+  if (error) {
+    message(error.message);
+  }
+};
+
+function displayAccount(session) {
+  if (session) {
+    window.showForm('account');
+    document.getElementById('userEmail').textContent =
+      session.user.email || 'Logged in';
+  } else {
+    window.showForm('welcome');
+  }
+}
+
+db.auth.onAuthStateChange((_event, session) => {
+  displayAccount(session);
+});
+
+const { data: { session } } = await db.auth.getSession();
+displayAccount(session);
+
+</script>
+
 </body>
 </html>
