@@ -770,36 +770,186 @@ window.createRoom = async function() {
 
 /* JOIN ROOM AS LISTENER */
 
+
+let activeRoomId = null;
+
 window.joinRoom = async function(roomId) {
   if (!currentUser) {
     message('Please login first.');
     return;
   }
 
-  message('Joining room...');
+  message('Opening room...');
 
-  const { error } = await db
-    .from('room_members')
-    .insert({
-      room_id: roomId,
-      user_id: currentUser.id,
-      role: 'listener'
-    });
+  const { data: room, error: roomError } = await db
+    .from('rooms')
+    .select('id, room_name, host_id, topic, is_active')
+    .eq('id', roomId)
+    .eq('is_active', true)
+    .maybeSingle();
 
-  if (error) {
-    if (error.code === '23505') {
-      message('You have already joined this room.');
-    } else {
-      message('Unable to join: ' + error.message);
-    }
-
-    await loadRooms();
+  if (roomError || !room) {
+    message('Room not found or no longer active.');
     return;
   }
 
-  message('You joined the room as a listener!');
-  await loadRooms();
+  // Host opens their own room without joining as listener.
+  if (room.host_id !== currentUser.id) {
+    const { data: existing, error: checkError } = await db
+      .from('room_members')
+      .select('room_id')
+      .eq('room_id', roomId)
+      .eq('user_id', currentUser.id)
+      .maybeSingle();
+
+    if (checkError) {
+      message('Unable to check membership: ' + checkError.message);
+      return;
+    }
+
+    if (!existing) {
+      const { error: joinError } = await db
+        .from('room_members')
+        .insert({
+          room_id: roomId,
+          user_id: currentUser.id,
+          role: 'listener'
+        });
+
+      if (joinError) {
+        message('Unable to join: ' + joinError.message);
+        return;
+      }
+    }
+  }
+
+  await openRoom(roomId);
 };
+
+window.openRoom = async function(roomId) {
+  activeRoomId = roomId;
+
+  document.getElementById('homeTab').classList.add('hidden');
+  document.getElementById('discoveryTab').classList.add('hidden');
+  document.getElementById('messageTab').classList.add('hidden');
+  document.getElementById('profileTab').classList.add('hidden');
+
+  document.querySelector('.bottom-nav').classList.add('hidden');
+  document.getElementById('roomView').classList.remove('hidden');
+
+  await loadRoomDetails();
+};
+
+window.loadRoomDetails = async function() {
+  if (!activeRoomId) return;
+
+  const { data: room, error } = await db
+    .from('rooms')
+    .select('id, room_name, host_id, topic, is_active')
+    .eq('id', activeRoomId)
+    .maybeSingle();
+
+  if (error || !room || !room.is_active) {
+    message('This room is no longer available.');
+    closeRoom();
+    return;
+  }
+
+  const { data: members, error: memberError } = await db
+    .from('room_members')
+    .select('user_id, role')
+    .eq('room_id', activeRoomId);
+
+  if (memberError) {
+    message('Unable to load room members: ' + memberError.message);
+    return;
+  }
+
+  document.getElementById('roomTitle').textContent =
+    room.room_name;
+
+  document.getElementById('roomTopic').textContent =
+    room.topic || 'BUGTAW Community';
+
+  document.getElementById('roomHost').innerHTML = `
+    <div class="member-row">
+      <div class="room-avatar">H</div>
+      <div class="member-details">
+        <strong>${room.host_id === currentUser.id
+          ? 'You (Host)'
+          : 'Room Host'}</strong>
+        <p>Room owner</p>
+      </div>
+      <span class="member-role">HOST</span>
+    </div>
+  `;
+
+  const memberHTML = (members || []).map(member => `
+    <div class="member-row">
+      <div class="room-avatar">L</div>
+      <div class="member-details">
+        <strong>${member.user_id === currentUser.id
+          ? 'You'
+          : 'BUGTAW Member'}</strong>
+        <p>${member.role === 'speaker'
+          ? 'Speaker'
+          : 'Listener'}</p>
+      </div>
+      <span class="member-role">
+        ${escapeHTML(member.role.toUpperCase())}
+      </span>
+    </div>
+  `).join('');
+
+  document.getElementById('roomMemberList').innerHTML =
+    memberHTML || '<p class="small-note">No listeners yet.</p>';
+
+  document.getElementById('roomMemberCount').textContent =
+    '(' + (members || []).length + ' members)';
+};
+
+window.closeRoom = function() {
+  activeRoomId = null;
+
+  document.getElementById('roomView').classList.add('hidden');
+  document.querySelector('.bottom-nav').classList.remove('hidden');
+
+  document.getElementById('homeTab').classList.remove('hidden');
+
+  loadRooms();
+};
+
+window.leaveRoom = async function() {
+  if (!activeRoomId || !currentUser) return;
+
+  const { data: room, error: roomError } = await db
+    .from('rooms')
+    .select('host_id')
+    .eq('id', activeRoomId)
+    .maybeSingle();
+
+  if (roomError) {
+    message(roomError.message);
+    return;
+  }
+
+  if (room && room.host_id !== currentUser.id) {
+    const { error } = await db
+      .from('room_members')
+      .delete()
+      .eq('room_id', activeRoomId)
+      .eq('user_id', currentUser.id);
+
+    if (error) {
+      message('Unable to leave: ' + error.message);
+      return;
+    }
+  }
+
+  message('You left the room.');
+  closeRoom();
+};
+
 
 /* REALTIME */
 
