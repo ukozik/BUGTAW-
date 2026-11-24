@@ -167,7 +167,8 @@ button.google {
   text-align: center;
 }
 
-/* HOME */
+<h2 class="section-title">Recommended Live Rooms</h2>
+<p class="small-note">Discover people and join conversations.</p>
 
 .home-header {
   /* NEW HOME DESIGN */
@@ -219,6 +220,100 @@ button.google {
   color: var(--gold);
   font-size: 25px;
 }
+  /* HOME CATEGORY */
+
+window.setHomeCategory = function(button) {
+  document.querySelectorAll('.home-categories button')
+    .forEach(item => item.classList.remove('active'));
+
+  button.classList.add('active');
+
+  // Live rooms muna ang ipinapakita natin.
+  loadRooms();
+};
+
+/* SEARCH */
+
+window.toggleSearch = function() {
+  const area = document.getElementById('searchArea');
+  area.classList.toggle('show');
+
+  if (area.classList.contains('show')) {
+    document.getElementById('roomSearch').focus();
+  } else {
+    document.getElementById('roomSearch').value = '';
+    filterRooms('');
+  }
+};
+
+window.filterRooms = function(query) {
+  const search = query.trim().toLowerCase();
+
+  document.querySelectorAll('.live-card').forEach(card => {
+    const searchable = card.dataset.search || '';
+    card.classList.toggle(
+      'hidden',
+      !searchable.includes(search)
+    );
+  });
+};
+
+/* MY ROOM */
+
+window.openMyRoom = async function() {
+  if (!currentUser) {
+    message('Please login first.');
+    return;
+  }
+
+  message('Opening your personal room...');
+
+  // Hanapin muna ang active room na pag-aari ng user.
+  const { data: rooms, error } = await db
+    .from('rooms')
+    .select('id, room_name, host_id, topic, is_active, created_at')
+    .eq('host_id', currentUser.id)
+    .eq('is_active', true)
+    .order('created_at', { ascending: false })
+    .limit(1);
+
+  if (error) {
+    message('Unable to find your room: ' + error.message);
+    return;
+  }
+
+  // Kung mayroon nang sariling room, buksan agad.
+  if (rooms && rooms.length > 0) {
+    await openRoom(rooms[0].id);
+    return;
+  }
+
+  // Kung newbie at wala pang room, automatic gumawa.
+  const userName =
+    currentUser.user_metadata?.full_name ||
+    currentUser.email?.split('@')[0] ||
+    'User';
+
+  const { data: newRoom, error: createError } = await db
+    .from('rooms')
+    .insert({
+      id: crypto.randomUUID(),
+      room_name: userName + "'s Room",
+      host_id: currentUser.id,
+      topic: 'Welcome to my room!',
+      is_active: true
+    })
+    .select('id')
+    .single();
+
+  if (createError) {
+    message('Unable to create your room: ' + createError.message);
+    return;
+  }
+
+  message('Your personal room is ready!');
+  await openRoom(newRoom.id);
+};
 
 .search-area {
   display: none;
