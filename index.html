@@ -516,6 +516,117 @@ button.google {
   .seat-avatar { width: 36px; height: 36px; }
   .room-control { font-size: 10px; }
 }
+  /* NEW HOME DESIGN */
+
+.home-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 8px 0 22px;
+}
+
+.home-categories {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.home-categories button {
+  padding: 8px 0;
+  background: transparent;
+  color: #A99BB9;
+  font-size: 14px;
+}
+
+.home-categories button.active {
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--gold);
+}
+
+.home-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-icon {
+  width: 38px;
+  height: 42px;
+  flex: 0 0 38px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: var(--gold);
+  font-size: 25px;
+}
+
+.search-area {
+  display: none;
+  margin: 0 0 16px;
+}
+
+.search-area.show {
+  display: block;
+}
+
+.live-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 10px;
+}
+
+.live-card {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #241D36;
+}
+
+.live-cover {
+  min-height: 145px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #493064, #171020);
+  color: var(--gold);
+  font-size: 35px;
+}
+
+.live-card-info {
+  padding: 12px;
+}
+
+.live-card-info h3 {
+  margin: 0;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.live-card-info p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.live-card .join-button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+@media (max-width: 360px) {
+  .home-categories { gap: 10px; }
+  .home-categories button { font-size: 12px; }
+  .home-icon { width: 32px; flex-basis: 32px; }
+  .live-card-info { padding: 9px; }
+}
 </style>
 </head>
 
