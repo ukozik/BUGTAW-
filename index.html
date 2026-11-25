@@ -828,6 +828,23 @@ button.google {
     <div class="empty-state">Your messages will appear here. Messaging is coming soon.</div>
   </div>
 
+  <!-- RADIO -->
+<div id="radioTab" class="tab-content hidden">
+  <h2>Radio Station</h2>
+  <p class="description">Listen to radio stations from across the Philippines.</p>
+
+  <div class="create-panel">
+    <h3>Choose Your Region</h3>
+    <button class="secondary" onclick="showRoomNotice('Luzon radio stations are coming soon.')">Luzon</button>
+    <button class="secondary" onclick="showRoomNotice('Visayas radio stations are coming soon.')">Visayas</button>
+    <button class="secondary" onclick="showRoomNotice('Mindanao radio stations are coming soon.')">Mindanao</button>
+  </div>
+
+  <div class="empty-state">
+    Radio stations will appear here.
+  </div>
+</div>
+
 <!-- PROFILE -->
 <div id="profileTab" class="tab-content hidden">
   <h2>My Profile</h2>
@@ -1158,7 +1175,7 @@ function displayAccount(session) {
 function showAccount() {
   showForm('account');
  const savedTab = localStorage.getItem('activeTab');
-const validTabs = ['home', 'discovery', 'message', 'profile'];
+const validTabs = ['home', 'discovery', 'message', 'radio', 'profile'];
 
 const tabToRestore = validTabs.includes(savedTab)
   ? savedTab
