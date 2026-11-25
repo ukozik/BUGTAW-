@@ -740,16 +740,40 @@ button.google {
   </div>
 
   <!-- PROFILE -->
-  <div id="profileTab" class="tab-content hidden">
-    <h2>My Profile</h2>
-    <div class="room-card">
-      <p class="small-note">Logged in account</p>
-      <p id="profileEmail"></p>
-    </div>
+<div id="profileTab" class="tab-content hidden">
+  <h2>My Profile</h2>
+
+  <div class="room-card">
+    <div class="profile-circle">👤</div>
+    <p class="small-note">Logged in account</p>
+    <p id="profileEmail"></p>
+  </div>
+
+  <div class="room-card">
+    <h3>TITLE</h3>
+    <input
+      id="profileTitle"
+      type="text"
+      placeholder="Enter your title"
+    >
+    <button onclick="saveProfile()">Save Title</button>
+  </div>
+
+  <div class="room-card">
+    <h3>ABOUT</h3>
+    <textarea
+      id="profileAbout"
+      placeholder="Tell us about yourself..."
+    ></textarea>
+    <button onclick="saveProfile()">Save About</button>
+  </div>
+
+  <div class="room-card">
+    <h3>SETTINGS</h3>
     <button class="secondary" onclick="logout()">Logout</button>
   </div>
 </div>
-
+  
 <!-- ROOM VIEW -->
 <div id="roomView" class="room-screen hidden">
   <div class="room-top">
