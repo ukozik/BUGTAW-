@@ -1571,6 +1571,19 @@ db.auth.onAuthStateChange((_event, session) => {
 
 const { data: { session } } = await db.auth.getSession();
 displayAccount(session);
+const { data: { session } } = await db.auth.getSession();
+displayAccount(session);
+
+window.copyUserId = async function() {
+  if (!currentUser) return;
+
+  try {
+    await navigator.clipboard.writeText(currentUser.id);
+    alert('User ID copied successfully!');
+  } catch (error) {
+    alert('Unable to copy User ID. Please try again.');
+  }
+};
 
 </script>
 
