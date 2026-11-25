@@ -1117,7 +1117,16 @@ function showAccount() {
 
   const email = currentUser.email || 'Logged in';
 
+  const userName =
+    currentUser.user_metadata?.full_name ||
+    currentUser.user_metadata?.name ||
+    email.split('@')[0];
+
+  const initial = userName.trim().charAt(0).toUpperCase();
+
   document.getElementById('userEmail').textContent = email;
+  document.getElementById('profileName').textContent = userName;
+  document.getElementById('profileAvatar').textContent = initial;
 
   loadProfile();
 
