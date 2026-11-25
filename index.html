@@ -650,6 +650,54 @@ button.google {
   .home-icon { width: 32px; flex-basis: 32px; }
   .live-card-info { padding: 9px; }
 }
+  /* PROFILE DESIGN UPGRADE */
+
+#profileTab input,
+#profileTab textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #100B1B;
+  color: #FFFFFF;
+  border: 1px solid #49345F;
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 16px;
+  outline: none;
+  margin: 12px 0;
+}
+
+#profileTab input:focus,
+#profileTab textarea:focus {
+  border-color: #D8B45A;
+  box-shadow: 0 0 0 2px rgba(216,180,90,0.15);
+}
+
+#profileTab textarea {
+  min-height: 130px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+#profileTab input::placeholder,
+#profileTab textarea::placeholder {
+  color: #8F829F;
+}
+
+#profileTab button:not(.secondary) {
+  background: linear-gradient(135deg, #DCC078, #A98235);
+  color: #1A1024;
+  border: none;
+  border-radius: 12px;
+  padding: 13px 22px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+#profileTab .room-card h3 {
+  color: #E5C77D;
+  letter-spacing: 1px;
+  }
 </style>
 </head>
 
