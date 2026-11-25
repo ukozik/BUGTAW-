@@ -1398,15 +1398,14 @@ async function restoreLastRoom() {
     .eq('user_id', currentUser.id)
     .maybeSingle();
 
- if (error) {
-  console.error('Unable to restore room:', error.message);
-  return;
-}
+  if (error) {
+    console.error('Unable to restore room:', error.message);
+    return;
+  }
 
-if (!membership) {
-  localStorage.removeItem('activeRoomId');
-  return;
-} 
+  if (!membership) {
+    localStorage.removeItem('activeRoomId');
+    return;
   }
 
   await openRoom(savedRoomId);
