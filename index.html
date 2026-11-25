@@ -830,7 +830,7 @@ button.google {
   <div class="profile-avatar" id="profileAvatar">U</div>
   <div class="profile-name-area">
     <h2 id="profileName">User Name</h2>
-    <p>My Profile</p>
+    <p id="profileUserId">User ID</p>
   </div>
 </div>
   
@@ -1161,6 +1161,8 @@ function showAccount() {
 
   document.getElementById('userEmail').textContent = email;
   document.getElementById('profileName').textContent = userName;
+  document.getElementById('profileUserId').textContent =
+  'ID: ' + currentUser.id;
   document.getElementById('profileAvatar').textContent = initial;
 
   loadProfile();
