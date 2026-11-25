@@ -1157,6 +1157,21 @@ function displayAccount(session) {
 
 function showAccount() {
   showForm('account');
+ const savedTab = localStorage.getItem('activeTab');
+const validTabs = ['home', 'discovery', 'message', 'profile'];
+
+const tabToRestore = validTabs.includes(savedTab)
+  ? savedTab
+  : 'home';
+
+const tabButton = [...document.querySelectorAll('.bottom-nav button')]
+  .find(btn =>
+    btn.getAttribute('onclick')?.includes(`'${tabToRestore}'`)
+  );
+
+if (tabButton) {
+  showTab(tabToRestore, tabButton);
+} 
 
   const email = currentUser.email || 'Logged in';
 
