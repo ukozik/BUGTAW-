@@ -1388,6 +1388,8 @@ window.joinRoom = async function(roomId) {
 
 async function restoreLastRoom() {
   const savedRoomId = localStorage.getItem('activeRoomId');
+  console.log('Saved Room ID:', savedRoomId);
+console.log('Current User:', currentUser?.id);
 
   if (!savedRoomId || !currentUser) return;
 
