@@ -1377,6 +1377,7 @@ window.openRoom = async function(roomId) {
     });
 
   document.querySelector('.bottom-nav').classList.add('hidden');
+  document.querySelector('#account > .home-header').classList.add('hidden');
   document.getElementById('roomView').classList.remove('hidden');
 
   message('');
