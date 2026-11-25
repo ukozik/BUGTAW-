@@ -962,7 +962,7 @@ window.showRoomNotice = function(text) {
 /* SHOW SCREENS */
 
 window.showForm = function(form) {
-  ['welcome', 'signup', 'login', 'account'].forEach(id => {
+  ['home', 'discovery', 'message', 'radio', 'profile'].forEach(name => {
     document.getElementById(id).classList.add('hidden');
   });
 
@@ -981,7 +981,7 @@ window.showForm = function(form) {
 window.showTab = function(tab, button) {
   if (activeRoomId) return;
 
-  ['home', 'discovery', 'message', 'profile'].forEach(name => {
+ ['home', 'discovery', 'message', 'radio', 'profile'].forEach(name => {
     document.getElementById(name + 'Tab').classList.add('hidden');
   });
 
