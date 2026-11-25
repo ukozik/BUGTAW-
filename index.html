@@ -1386,6 +1386,28 @@ window.joinRoom = async function(roomId) {
   await openRoom(roomId);
 };
 
+/* RESTORE LAST ROOM */
+
+async function restoreLastRoom() {
+  const savedRoomId = localStorage.getItem('activeRoomId');
+
+  if (!savedRoomId || !currentUser) return;
+
+  const { data: membership, error } = await db
+    .from('room_members')
+    .select('room_id')
+    .eq('room_id', savedRoomId)
+    .eq('user_id', currentUser.id)
+    .maybeSingle();
+
+  if (error || !membership) {
+    localStorage.removeItem('activeRoomId');
+    return;
+  }
+
+  await openRoom(savedRoomId);
+}
+    
 /* OPEN ROOM */
 
 window.openRoom = async function(roomId) {
