@@ -1063,19 +1063,15 @@ function showAccount() {
   showForm('account');
 
   const email = currentUser.email || 'Logged in';
-  const name = currentUser.user_metadata?.full_name || email;
-  const initial = name.charAt(0).toUpperCase();
 
   document.getElementById('userEmail').textContent = email;
-  document.getElementById('profileEmail').textContent = email;
-  document.getElementById('profileInitial').textContent = initial;
 
   loadProfile();
-  
+
   loadRooms();
   subscribeRealtime();
 }
-
+    
 /* LOAD ACTIVE ROOMS */
 
 window.loadRooms = async function() {
