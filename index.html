@@ -1484,6 +1484,8 @@ window.closeRoom = function() {
 
   document.getElementById('homeTab').classList.remove('hidden');
 
+  document.querySelector('#account > .home-header').classList.remove('hidden');
+
   document.querySelectorAll('.bottom-nav button').forEach(btn => {
     btn.classList.remove('active');
   });
