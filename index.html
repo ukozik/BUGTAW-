@@ -999,6 +999,7 @@ window.showTab = function(tab, button) {
   });
 
   button.classList.add('active');
+  localStorage.setItem('activeTab', tab);
 
   if (tab === 'discovery') {
     loadRooms();
