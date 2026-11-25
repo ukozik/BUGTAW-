@@ -1495,6 +1495,7 @@ window.loadRoomDetails = async function() {
 
 window.closeRoom = function() {
   activeRoomId = null;
+  localStorage.removeItem('activeRoomId');
 
   document.getElementById('roomView').classList.add('hidden');
   document.querySelector('.bottom-nav').classList.remove('hidden');
