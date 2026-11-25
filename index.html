@@ -1386,7 +1386,8 @@ window.joinRoom = async function(roomId) {
 
 window.openRoom = async function(roomId) {
   activeRoomId = roomId;
-
+localStorage.setItem('activeRoomId', roomId);
+  
   ['homeTab', 'discoveryTab', 'messageTab', 'profileTab']
     .forEach(id => {
       document.getElementById(id).classList.add('hidden');
