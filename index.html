@@ -899,6 +899,13 @@ window.showTab = function(tab, button) {
 
   document.getElementById(tab + 'Tab').classList.remove('hidden');
 
+  // Hide community header on Profile only
+  const homeHeader = document.querySelector('#account > .home-header');
+
+  if (homeHeader) {
+    homeHeader.classList.toggle('hidden', tab === 'profile');
+  }
+
   document.querySelectorAll('.bottom-nav button').forEach(btn => {
     btn.classList.remove('active');
   });
@@ -911,7 +918,7 @@ window.showTab = function(tab, button) {
 
   message('');
 };
-
+    
 /* SIGN UP */
 
 window.register = async function() {
