@@ -1238,23 +1238,30 @@ window.loadRooms = async function() {
     );
 
     return `
-      <div class="room-card">
-        <span class="live-label">● ACTIVE ROOM</span>
+  <div class="room-card live-card">
 
-        <h3>${escapeHTML(room.room_name)}</h3>
+    <div class="live-cover">
+      <span>🎙️</span>
+      <span class="live-label">● LIVE</span>
+    </div>
 
-        <p class="description">
-          ${escapeHTML(room.topic || 'Open conversation')}
-        </p>
+    <div class="live-card-info">
+      <h3>${escapeHTML(room.room_name)}</h3>
 
-        <p class="room-info">👥 ${count} member(s)</p>
+      <p>
+        ${escapeHTML(room.topic || 'Open conversation')}
+      </p>
 
-        <button class="join-button"
-          onclick="joinRoom('${escapeHTML(room.id)}')">
-          ${alreadyJoined ? 'Open Room ✓' : 'Join Room'}
-        </button>
-      </div>
-    `;
+      <p class="room-info">👥 ${count} member(s)</p>
+
+      <button class="join-button"
+        onclick="joinRoom('${escapeHTML(room.id)}')">
+        ${alreadyJoined ? 'Open Room ✓' : 'Join Room'}
+      </button>
+    </div>
+
+  </div>
+`;
   }).join('');
 
   roomList.innerHTML = roomHTML;
