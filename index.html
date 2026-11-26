@@ -852,6 +852,34 @@ button.google {
 
   <div class="room-card">
     <h3>SETTINGS</h3>
+      <!-- ADMIN BACKGROUND MANAGER -->
+  <div class="room-card hidden" id="adminBackgroundCard">
+    <h3>ADMIN — BACKGROUND MANAGER</h3>
+
+    <label for="backgroundImage">Upload Background Image</label>
+    <input
+      type="file"
+      id="backgroundImage"
+      accept="image/*"
+    >
+
+    <label for="backgroundColor">Background Color</label>
+    <input
+      type="color"
+      id="backgroundColor"
+      value="#171326"
+    >
+
+    <div id="backgroundPreview"
+      style="width:100%;min-height:140px;border-radius:12px;background:#171326;margin:12px 0;background-size:cover;background-position:center;">
+    </div>
+
+    <button class="primary" onclick="saveAppBackground()">
+      Save Background
+    </button>
+
+    <p id="backgroundStatus"></p>
+  </div>
     <button class="secondary" onclick="logout()">Logout</button>
   </div>
 </div>
