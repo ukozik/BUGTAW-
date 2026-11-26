@@ -979,13 +979,21 @@ window.showRoomNotice = function(text) {
 /* SHOW SCREENS */
 
 window.showForm = function(form) {
-  ['home', 'discovery', 'message', 'radio', 'profile'].forEach(name => {
-    document.getElementById(name + 'Tab').classList.add('hidden');
+  // Hide all authentication screens
+  document.querySelectorAll('.auth-screen').forEach(screen => {
+    screen.classList.add('hidden');
   });
 
+  // Hide account and room screens
+  document.getElementById('account').classList.add('hidden');
+  document.getElementById('roomView').classList.add('hidden');
+
+  // Show requested screen
   document.getElementById(form).classList.remove('hidden');
 
+  // Show bottom navigation only inside account
   const nav = document.querySelector('.bottom-nav');
+
   if (form === 'account') {
     nav.classList.remove('hidden');
   } else {
