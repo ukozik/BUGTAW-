@@ -850,6 +850,858 @@ button.google {
     <button onclick="saveProfile()">Save About</button>
   </div>
 
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#100B1C">
+<title>Your Voice Community</title>
+
+<style>
+  /* PROFILE HEADING */
+
+.profile-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0 24px;
+}
+
+.profile-avatar {
+  width: 68px;
+  height: 68px;
+  min-width: 68px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #7650A8, #39204F);
+  border: 2px solid #D8B45A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.profile-name-area h2 {
+  margin: 0;
+  color: white;
+  font-size: 20px;
+}
+
+.profile-name-area p {
+  margin: 5px 0 0;
+  color: #B8A9C8;
+  font-size: 13px;
+}
+:root {
+  --bg: #100B1C;
+  --surface: #1B1429;
+  --surface-2: #251A37;
+  --surface-3: #302044;
+  --purple: #A879F5;
+  --gold: #E8C77A;
+  --muted: #B9ADC9;
+  --line: rgba(255,255,255,.08);
+  --danger: #FF718D;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: var(--bg);
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+.hidden { display: none !important; }
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: max(18px, env(safe-area-inset-top)) 16px
+           calc(92px + env(safe-area-inset-bottom));
+}
+
+.panel {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, p { margin-top: 0; }
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.description {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.small-note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: #130E20;
+  color: white;
+  outline: none;
+  font-size: 15px;
+}
+
+input:focus {
+  border-color: var(--purple);
+}
+
+button.primary,
+button.secondary,
+button.google {
+  width: 100%;
+  padding: 15px;
+  margin-top: 12px;
+  border-radius: 13px;
+  font-weight: bold;
+}
+
+.primary {
+  background: linear-gradient(135deg, #A879F5, #7445BC);
+  color: white;
+}
+
+.secondary {
+  background: var(--surface-3);
+  color: #E5D5FF;
+  border: 1px solid rgba(168,121,245,.25);
+}
+
+.google {
+  background: white;
+  color: #241735;
+}
+
+.message {
+  max-width: 760px;
+  margin: 16px auto 0;
+  text-align: center;
+  color: var(--gold);
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.footer {
+  text-align: center;
+  color: #82758F;
+  font-size: 11px;
+  margin-top: 20px;
+}
+
+/* AUTH SCREENS */
+
+.auth-screen {
+  width: 100%;
+  max-width: 440px;
+  margin: 8vh auto 0;
+  padding: 26px 22px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.auth-mark {
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 18px;
+  color: var(--gold);
+}
+
+.auth-screen h2 {
+  text-align: center;
+}
+
+.auth-screen .description {
+  text-align: center;
+}
+
+/* HOME */
+<div id="home" class="home-screen">
+
+  <header class="home-topbar">
+  <div class="home-categories">
+    <button onclick="setHomeCategory(this)">Related</button>
+    <button onclick="setHomeCategory(this)">Hot</button>
+    <button class="active" onclick="setHomeCategory(this)">Live</button>
+    <button onclick="setHomeCategory(this)">Explore</button>
+  </div>
+
+  <div class="home-actions">
+    <button class="home-icon" title="Search"
+      onclick="toggleSearch()">⌕</button>
+
+    <button class="home-icon" title="My Room"
+      onclick="openMyRoom()">⌂</button>
+  </div>
+</header>
+
+<div id="searchArea" class="search-area">
+  <input id="roomSearch" placeholder="Search rooms..."
+    oninput="filterRooms(this.value)">
+</div>
+  
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 22px;
+}
+
+.home-header h2 {
+  color: var(--gold);
+  margin: 0 0 5px;
+  letter-spacing: .5px;
+}
+
+.profile-circle {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #A879F5, #62408F);
+  font-weight: bold;
+}
+
+.home-banner {
+  padding: 22px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #493064, #21172F 75%);
+  border: 1px solid rgba(232,199,122,.15);
+}
+
+.home-banner h2 {
+  color: var(--gold);
+}
+
+.section-title {
+  margin: 26px 0 8px;
+}
+
+.room-card {
+  margin-top: 13px;
+  padding: 17px;
+  border-radius: 17px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.room-card h3 {
+  margin: 9px 0 7px;
+}
+
+.room-card p {
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.live-label {
+  color: var(--danger);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: .6px;
+}
+
+.room-info {
+  color: var(--muted);
+  font-size: 12px !important;
+  margin: 6px 0;
+}
+
+.join-button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 10px;
+  border-radius: 12px;
+  background: var(--surface-3);
+  color: #E8D8FF;
+  font-weight: bold;
+}
+
+.empty-state {
+  margin-top: 14px;
+  padding: 24px 16px;
+  border: 1px dashed rgba(255,255,255,.15);
+  border-radius: 16px;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+.tab-content { margin-top: 18px; }
+
+.create-panel {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav {
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 4px;
+  padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(20,14,31,.96);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+}
+
+.bottom-nav button {
+  flex: 1;
+  padding: 8px 2px;
+  margin: 0;
+  background: transparent;
+  color: #9588A8;
+  font-size: 11px;
+  border-radius: 12px;
+}
+
+.bottom-nav button.active {
+  color: var(--gold);
+  background: rgba(232,199,122,.09);
+}
+
+/* ROOM */
+
+.room-screen {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+
+.room-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  width: auto;
+  padding: 10px 14px;
+  margin: 0;
+  border-radius: 12px;
+  background: var(--surface-3);
+  color: white;
+}
+
+.room-heading {
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #38254E, #1B1429);
+  border: 1px solid rgba(232,199,122,.15);
+}
+
+.room-heading h2 {
+  color: var(--gold);
+  font-size: 24px;
+  overflow-wrap: anywhere;
+}
+
+.room-heading p {
+  margin-bottom: 0;
+}
+
+.host-area {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.host-avatar {
+  width: 76px;
+  height: 76px;
+  margin: 12px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: linear-gradient(135deg, #A879F5, #4B3268);
+  font-size: 25px;
+  font-weight: bold;
+  box-shadow: 0 0 24px rgba(232,199,122,.12);
+}
+
+.host-label {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.seat-title {
+  margin: 28px 0 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 8px;
+}
+
+.seat {
+  min-width: 0;
+  padding: 13px 4px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.seat-avatar {
+  width: 43px;
+  height: 43px;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-3);
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.seat strong {
+  display: block;
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.seat span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.seat.occupied {
+  border-color: rgba(168,121,245,.4);
+}
+
+.member-list {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 17px;
+  background: var(--surface);
+}
+
+.member-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.member-row:last-child { border-bottom: 0; }
+
+.room-avatar {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-3);
+}
+
+.member-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.member-details p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.member-role {
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.room-controls {
+  position: sticky;
+  bottom: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 22px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(27,20,41,.96);
+  backdrop-filter: blur(12px);
+}
+
+.room-control {
+  min-width: 0;
+  padding: 12px 3px;
+  border-radius: 12px;
+  background: var(--surface-3);
+  color: white;
+  font-size: 11px;
+}
+
+.room-control .control-icon {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.leave-button {
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 13px;
+  background: rgba(255,113,141,.12);
+  color: #FF9BAD;
+  font-weight: bold;
+}
+
+@media (max-width: 360px) {
+  .app { padding-left: 12px; padding-right: 12px; }
+  .seat-grid { gap: 8px 5px; }
+  .seat { padding: 10px 2px; }
+  .seat-avatar { width: 36px; height: 36px; }
+  .room-control { font-size: 10px; }
+}
+  /* NEW HOME DESIGN */
+
+.home-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 8px 0 22px;
+}
+
+.home-categories {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.home-categories button {
+  padding: 8px 0;
+  background: transparent;
+  color: #A99BB9;
+  font-size: 14px;
+}
+
+.home-categories button.active {
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--gold);
+}
+
+.home-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-icon {
+  width: 38px;
+  height: 42px;
+  flex: 0 0 38px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: var(--gold);
+  font-size: 25px;
+}
+
+.search-area {
+  display: none;
+  margin: 0 0 16px;
+}
+
+.search-area.show {
+  display: block;
+}
+
+.live-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 10px;
+}
+
+.live-card {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #241D36;
+}
+
+.live-cover {
+  min-height: 145px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #493064, #171020);
+  color: var(--gold);
+  font-size: 35px;
+}
+
+.live-card-info {
+  padding: 12px;
+}
+
+.live-card-info h3 {
+  margin: 0;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.live-card-info p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.live-card .join-button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+@media (max-width: 360px) {
+  .home-categories { gap: 10px; }
+  .home-categories button { font-size: 12px; }
+  .home-icon { width: 32px; flex-basis: 32px; }
+  .live-card-info { padding: 9px; }
+}
+  /* PROFILE DESIGN UPGRADE */
+
+#profileTab input,
+#profileTab textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #100B1B;
+  color: #FFFFFF;
+  border: 1px solid #49345F;
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 16px;
+  outline: none;
+  margin: 12px 0;
+}
+
+#profileTab input:focus,
+#profileTab textarea:focus {
+  border-color: #D8B45A;
+  box-shadow: 0 0 0 2px rgba(216,180,90,0.15);
+}
+
+#profileTab textarea {
+  min-height: 130px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+#profileTab input::placeholder,
+#profileTab textarea::placeholder {
+  color: #8F829F;
+}
+
+#profileTab button:not(.secondary) {
+  background: linear-gradient(135deg, #DCC078, #A98235);
+  color: #1A1024;
+  border: none;
+  border-radius: 12px;
+  padding: 13px 22px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+#profileTab .room-card h3 {
+  color: #E5C77D;
+  letter-spacing: 1px;
+  }
+  .copy-id-btn {
+  background: #352447;
+  color: #E5C77D;
+  border: 1px solid #A98235;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 5px;
+  cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+<main class="app">
+<section class="panel">
+
+<!-- WELCOME -->
+<div id="welcome" class="auth-screen">
+  <div class="auth-mark">BUGTAW</div>
+  <h2>Welcome</h2>
+  <p class="description">Connect, communicate, and discover new communities.</p>
+
+  <button class="google" onclick="googleLogin()">Continue with Google</button>
+  <button class="primary" onclick="showForm('signup')">Create Account</button>
+  <button class="secondary" onclick="showForm('login')">Continue with Email</button>
+</div>
+
+<!-- SIGN UP -->
+<div id="signup" class="auth-screen hidden">
+  <h2>Create Account</h2>
+  <p class="description">Join the community.</p>
+  <input id="signupName" placeholder="Your Name">
+  <input id="signupEmail" type="email" placeholder="Email Address">
+  <input id="signupPassword" type="password" placeholder="Password (at least 6 characters)">
+  <button class="primary" onclick="window.register()">Sign Up</button>
+  <button class="secondary" onclick="showForm('welcome')">Back</button>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="auth-screen hidden">
+  <h2>Welcome Back</h2>
+  <p class="description">Sign in to continue.</p>
+  <input id="loginEmail" type="email" placeholder="Email Address">
+  <input id="loginPassword" type="password" placeholder="Password">
+  <button class="primary" onclick="login()">Sign In</button>
+  <button class="secondary" onclick="showForm('welcome')">Back</button>
+</div>
+
+<!-- MAIN ACCOUNT -->
+<div id="account" class="hidden">
+
+  <header class="home-header">
+    <div>
+      <h2>YOUR COMMUNITY</h2>
+      <p class="small-note">Find your people. Join the conversation.</p>
+    </div>
+  </header>
+
+  <!-- HOME -->
+<div id="homeTab" class="tab-content">
+  <p id="userEmail" class="hidden"></p>
+  
+    <h2 class="section-title">Live Rooms</h2>
+    <p class="small-note">Explore active conversations.</p>
+
+    <button class="primary" onclick="loadRooms()">↻ Refresh Rooms</button>
+
+    <div id="roomList">
+      <div class="empty-state">Loading rooms...</div>
+    </div>
+
+    <div class="create-panel">
+      <h2>Create a Room</h2>
+      <p class="small-note">Start a public room with your own room name and topic.</p>
+      <input id="newRoomName" placeholder="Room Name">
+      <input id="newRoomTopic" placeholder="Room Topic">
+      <button class="primary" onclick="createRoom()">＋ Create Room</button>
+    </div>
+  </div>
+
+  <!-- DISCOVERY -->
+  <div id="discoveryTab" class="tab-content hidden">
+    <h2>Discover</h2>
+    <p class="description">Explore active rooms and communities.</p>
+    <div id="discoveryRooms"></div>
+  </div>
+
+  <!-- MESSAGES -->
+  <div id="messageTab" class="tab-content hidden">
+    <h2>Messages</h2>
+    <div class="empty-state">Your messages will appear here. Messaging is coming soon.</div>
+  </div>
+
+<!-- PROFILE -->
+<div id="profileTab" class="tab-content hidden">
+  <h2>My Profile</h2>
+
+  <div class="profile-heading">
+  <div class="profile-avatar" id="profileAvatar">U</div>
+  <div class="profile-name-area">
+    <h2 id="profileName">User Name</h2>
+<p id="profileUserId">User ID</p>
+<button class="copy-id-btn" onclick="copyUserId()">Copy ID</button>
+  </div>
+</div>
+  
+  <div class="room-card">
+    <h3>ABOUT</h3>
+    <textarea
+      id="profileAbout"
+      placeholder="Tell us about yourself..."
+    ></textarea>
+    <button onclick="saveProfile()">Save About</button>
+  </div>
+
   <div class="room-card">
     <h3>SETTINGS</h3>
       <!-- ADMIN BACKGROUND MANAGER -->
@@ -883,6 +1735,968 @@ button.google {
     <button class="secondary" onclick="logout()">Logout</button>
   </div>
 </div>
+  
+<!-- ROOM VIEW -->
+<div id="roomView" class="room-screen hidden">
+  <div class="room-top">
+    <button class="back-button" onclick="closeRoom()">← Back</button>
+    <span class="live-label">● ROOM OPEN</span>
+  </div>
+
+  <div class="room-heading">
+    <h2 id="roomTitle">Room Name</h2>
+    <p class="description" id="roomTopic"></p>
+  </div>
+
+  <div class="host-area">
+    <div class="host-label">ROOM HOST</div>
+    <div class="host-avatar" id="roomHostAvatar">H</div>
+    <strong id="roomHostName">Room Host</strong>
+  </div>
+
+  <div class="seat-title">
+    <h3>Speaker Seats</h3>
+    <span class="small-note">8 seats</span>
+  </div>
+
+  <div id="speakerSeats" class="seat-grid"></div>
+
+  <div class="member-list">
+    <h3>Room Members <span id="roomMemberCount"></span></h3>
+    <div id="roomMemberList"></div>
+  </div>
+
+  <p class="small-note" style="margin-top:16px;text-align:center">
+    Room membership is connected. Live audio is not connected yet.
+  </p>
+
+  <div class="room-controls">
+    <button class="room-control" onclick="showRoomNotice('Chat feature is coming soon.')">
+      <span class="control-icon">▤</span>Chat
+    </button>
+    <button class="room-control" onclick="showRoomNotice('Live microphone is not connected yet.')">
+      <span class="control-icon">🎙</span>Mic
+    </button>
+    <button class="room-control" onclick="showRoomNotice('Gifts feature is coming soon.')">
+      <span class="control-icon">◇</span>Gifts
+    </button>
+    <button class="room-control" onclick="showRoomNotice('More feature is coming soon.')">
+      <span class="control-icon">💠</span>More
+    </button>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav hidden">
+  <button class="active" onclick="showTab('home', this)">⌂<br>Home</button>
+  <button onclick="showTab('discovery', this)">◈<br>Discover</button>
+  <button onclick="showTab('message', this)">✉<br>Messages</button>
+  <button onclick="showTab('radio', this)">♫<br>Radio</button>
+  <button onclick="showTab('profile', this)">◎<br>Profile</button>
+</nav>
+
+<p id="message" class="message"></p>
+<p class="footer">Your community. Your voice.</p>
+
+</section>
+</main>
+
+  <script type="module">
+import { createClient }
+from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+/* SUPABASE CONNECTION
+   Ilagay dito ang kasalukuyan mong project URL at publishable key.
+*/
+const SUPABASE_URL = 'https://xlxwlxjqtwoiwavpgvwh.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_n8HpicWZ9_AhIhQ81Lv5PQ_PrIiyf9f';
+
+const db = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let currentUser = null;
+let activeRoomId = null;
+let roomChannel = null;
+let memberChannel = null;
+
+/* BASIC FUNCTIONS */
+
+function message(text) {
+  document.getElementById('message').textContent = text || '';
+}
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  })[char]);
+}
+
+window.showRoomNotice = function(text) {
+  message(text);
+};
+
+/* SHOW SCREENS */
+
+window.showForm = function(form) {
+  // Hide all authentication screens
+  document.querySelectorAll('.auth-screen').forEach(screen => {
+    screen.classList.add('hidden');
+  });
+
+  // Hide account and room screens
+  document.getElementById('account').classList.add('hidden');
+  document.getElementById('roomView').classList.add('hidden');
+
+  // Show requested screen
+  document.getElementById(form).classList.remove('hidden');
+
+  // Show bottom navigation only inside account
+  const nav = document.querySelector('.bottom-nav');
+
+  if (form === 'account') {
+    nav.classList.remove('hidden');
+  } else {
+    nav.classList.add('hidden');
+  }
+
+  message('');
+};
+
+window.showTab = function(tab, button) {
+  if (activeRoomId) return;
+
+ ['home', 'discovery', 'message', 'profile'].forEach(name => {
+    document.getElementById(name + 'Tab').classList.add('hidden');
+  });
+
+  document.getElementById(tab + 'Tab').classList.remove('hidden');
+
+  // Hide community header on Profile only
+  const homeHeader = document.querySelector('#account > .home-header');
+
+  if (homeHeader) {
+    homeHeader.classList.toggle('hidden', tab === 'profile');
+  }
+
+  document.querySelectorAll('.bottom-nav button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  button.classList.add('active');
+  localStorage.setItem('activeTab', tab);
+
+  if (tab === 'discovery') {
+    loadRooms();
+  }
+
+  message('');
+};
+    
+/* SIGN UP */
+
+window.register = async function() {
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value;
+
+  if (!name || !email || !password) {
+    message('Please complete all fields.');
+    return;
+  }
+
+  if (password.length < 6) {
+    message('Password must have at least 6 characters.');
+    return;
+  }
+
+  message('Creating your account...');
+
+  const { data, error } = await db.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { full_name: name }
+    }
+  });
+
+  if (error) {
+    message(error.message);
+    return;
+  }
+
+  if (data.session) {
+    message('Account created successfully!');
+  } else {
+    message('Registration successful! Please check your email to confirm your account.');
+  }
+};
+
+/* LOGIN */
+
+window.login = async function() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  if (!email || !password) {
+    message('Enter your email and password.');
+    return;
+  }
+
+  message('Signing in...');
+
+  const { error } = await db.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) message(error.message);
+};
+
+/* GOOGLE LOGIN */
+
+window.googleLogin = async function() {
+  message('Connecting to Google...');
+
+  const { error } = await db.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.origin
+    }
+  });
+
+  if (error) message(error.message);
+};
+
+/* LOGOUT */
+
+window.logout = async function() {
+  const { error } = await db.auth.signOut();
+
+  if (error) {
+    message(error.message);
+  }
+};
+
+/* USER PROFILE */
+
+async function loadProfile() {
+  if (!currentUser) return;
+
+  const { data, error } = await db
+    .from('user_profiles')
+    .select('title, about')
+    .eq('user_id', currentUser.id)
+    .maybeSingle();
+
+  if (error) {
+    console.error('Profile loading error:', error.message);
+    return;
+  }
+
+  document.getElementById('profileTitle').value = data?.title || '';
+  document.getElementById('profileAbout').value = data?.about || '';
+}
+
+async function saveProfile() {
+  if (!currentUser) {
+    alert('Please login first.');
+    return;
+  }
+
+  const title = document.getElementById('profileTitle').value.trim();
+  const about = document.getElementById('profileAbout').value.trim();
+
+  const { error } = await db
+    .from('user_profiles')
+    .upsert({
+      user_id: currentUser.id,
+      title: title,
+      about: about,
+      updated_at: new Date().toISOString()
+    }, {
+      onConflict: 'user_id'
+    });
+
+  if (error) {
+    alert('Unable to save profile: ' + error.message);
+    return;
+  }
+
+  alert('Profile saved successfully!');
+    }
+    
+/* AUTH STATE */
+
+function displayAccount(session) {
+  currentUser = session?.user || null;
+
+  if (currentUser) {
+    showAccount();
+  } else {
+    activeRoomId = null;
+    unsubscribeRealtime();
+    showForm('welcome');
+  }
+}
+
+function showAccount() {
+  showForm('account');
+ const savedTab = localStorage.getItem('activeTab');
+const validTabs = ['home', 'discovery', 'message', 'profile'];
+
+const tabToRestore = validTabs.includes(savedTab)
+  ? savedTab
+  : 'home';
+
+const tabButton = [...document.querySelectorAll('.bottom-nav button')]
+  .find(btn =>
+    btn.getAttribute('onclick')?.includes(`'${tabToRestore}'`)
+  );
+
+if (tabButton) {
+  showTab(tabToRestore, tabButton);
+} 
+
+  const email = currentUser.email || 'Logged in';
+
+  const userName =
+    currentUser.user_metadata?.full_name ||
+    currentUser.user_metadata?.name ||
+    email.split('@')[0];
+
+  const initial = userName.trim().charAt(0).toUpperCase();
+
+  document.getElementById('userEmail').textContent = email;
+  document.getElementById('profileName').textContent = userName;
+  document.getElementById('profileUserId').textContent =
+  'ID: ' + currentUser.id;
+  document.getElementById('profileAvatar').textContent = initial;
+
+  loadProfile();
+
+loadRooms();
+restoreLastRoom();
+
+subscribeRealtime();
+  initAdminBackgroundManager();
+}
+    
+/* LOAD ACTIVE ROOMS */
+
+window.loadRooms = async function() {
+  const roomList = document.getElementById('roomList');
+  const discoveryRooms = document.getElementById('discoveryRooms');
+
+  roomList.innerHTML =
+    '<div class="empty-state">Loading rooms...</div>';
+
+  const { data: rooms, error } = await db
+    .from('rooms')
+    .select('id, room_name, host_id, topic, is_active, created_at')
+    .eq('is_active', true)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    const errorHTML =
+      '<div class="empty-state">Unable to load rooms: ' +
+      escapeHTML(error.message) + '</div>';
+
+    roomList.innerHTML = errorHTML;
+    discoveryRooms.innerHTML = errorHTML;
+    return;
+  }
+
+  if (!rooms || rooms.length === 0) {
+    const empty = `
+      <div class="empty-state">
+        No active rooms yet.<br>
+        Be the first to create a room!
+      </div>`;
+
+    roomList.innerHTML = empty;
+    discoveryRooms.innerHTML = empty;
+    return;
+  }
+
+  const roomIds = rooms.map(room => room.id);
+
+  const { data: members, error: memberError } = await db
+    .from('room_members')
+    .select('room_id, user_id')
+    .in('room_id', roomIds);
+
+  if (memberError) {
+    console.error('Member count error:', memberError.message);
+  }
+
+  const roomHTML = rooms.map(room => {
+    const count = (members || []).filter(
+      member => member.room_id === room.id
+    ).length;
+
+    const alreadyJoined = (members || []).some(
+      member =>
+        member.room_id === room.id &&
+        member.user_id === currentUser?.id
+    );
+
+    return `
+  <div class="room-card live-card">
+
+    <div class="live-cover">
+      <span>🎙️</span>
+      <span class="live-label">● LIVE</span>
+    </div>
+
+    <div class="live-card-info">
+      <h3>${escapeHTML(room.room_name)}</h3>
+
+      <p>
+        ${escapeHTML(room.topic || 'Open conversation')}
+      </p>
+
+      <p class="room-info">👥 ${count} member(s)</p>
+
+      <button class="join-button"
+        onclick="joinRoom('${escapeHTML(room.id)}')">
+        ${alreadyJoined ? 'Open Room ✓' : 'Join Room'}
+      </button>
+    </div>
+
+  </div>
+`;
+  }).join('');
+
+  roomList.innerHTML = roomHTML;
+  discoveryRooms.innerHTML = roomHTML;
+};
+
+/* CREATE ROOM */
+
+window.createRoom = async function() {
+  if (!currentUser) {
+    message('Please login first.');
+    return;
+  }
+
+  const roomName =
+    document.getElementById('newRoomName').value.trim();
+
+  const topic =
+    document.getElementById('newRoomTopic').value.trim();
+
+  if (!roomName) {
+    message('Please enter a room name.');
+    return;
+  }
+
+  message('Creating room...');
+
+  const { error } = await db
+    .from('rooms')
+    .insert({
+      id: crypto.randomUUID(),
+      room_name: roomName,
+      host_id: currentUser.id,
+      topic: topic || 'Open conversation',
+      is_active: true
+    });
+
+  if (error) {
+    message('Create room error: ' + error.message);
+    return;
+  }
+
+  document.getElementById('newRoomName').value = '';
+  document.getElementById('newRoomTopic').value = '';
+
+  message('Room created successfully!');
+  await loadRooms();
+};
+
+/* JOIN ROOM */
+
+window.joinRoom = async function(roomId) {
+  if (!currentUser) {
+    message('Please login first.');
+    return;
+  }
+
+  message('Opening room...');
+
+  const { data: room, error: roomError } = await db
+    .from('rooms')
+    .select('id, room_name, host_id, topic, is_active')
+    .eq('id', roomId)
+    .eq('is_active', true)
+    .maybeSingle();
+
+  if (roomError || !room) {
+    message('Room not found or no longer active.');
+    return;
+  }
+
+  // Host opens their own room without joining as listener.
+  if (room.host_id !== currentUser.id) {
+    const { data: existing, error: checkError } = await db
+      .from('room_members')
+      .select('room_id')
+      .eq('room_id', roomId)
+      .eq('user_id', currentUser.id)
+      .maybeSingle();
+
+    if (checkError) {
+      message('Unable to check membership: ' + checkError.message);
+      return;
+    }
+
+    if (!existing) {
+      const { error: joinError } = await db
+        .from('room_members')
+        .insert({
+          room_id: roomId,
+          user_id: currentUser.id,
+          role: 'listener'
+        });
+
+      if (joinError) {
+        message('Unable to join: ' + joinError.message);
+        return;
+      }
+    }
+  }
+
+  await openRoom(roomId);
+};
+
+/* RESTORE LAST ROOM */
+
+async function restoreLastRoom() {
+  const savedRoomId = localStorage.getItem('activeRoomId');
+  console.log('Saved Room ID:', savedRoomId);
+console.log('Current User:', currentUser?.id);
+
+  if (!savedRoomId || !currentUser) return;
+
+  const { data: membership, error } = await db
+    .from('room_members')
+    .select('room_id')
+    .eq('room_id', savedRoomId)
+    .eq('user_id', currentUser.id)
+    .maybeSingle();
+
+  if (error) {
+    console.error('Unable to restore room:', error.message);
+    return;
+  }
+
+  if (!membership) {
+    localStorage.removeItem('activeRoomId');
+    return;
+  }
+
+  await openRoom(savedRoomId);
+}
+    
+/* OPEN ROOM */
+
+window.openRoom = async function(roomId) {
+  activeRoomId = roomId;
+localStorage.setItem('activeRoomId', roomId);
+  
+  ['homeTab', 'discoveryTab', 'messageTab', 'profileTab']
+    .forEach(id => {
+      document.getElementById(id).classList.add('hidden');
+    });
+
+  document.querySelector('.bottom-nav').classList.add('hidden');
+  document.querySelector('#account > .home-header').classList.add('hidden');
+  document.getElementById('roomView').classList.remove('hidden');
+
+  message('');
+  await loadRoomDetails();
+};
+
+/* LOAD ROOM DETAILS */
+
+window.loadRoomDetails = async function() {
+  if (!activeRoomId) return;
+
+  const { data: room, error } = await db
+    .from('rooms')
+    .select('id, room_name, host_id, topic, is_active')
+    .eq('id', activeRoomId)
+    .maybeSingle();
+
+  if (error || !room || !room.is_active) {
+    message('This room is no longer available.');
+    closeRoom();
+    return;
+  }
+
+  const { data: members, error: memberError } = await db
+    .from('room_members')
+    .select('user_id, role')
+    .eq('room_id', activeRoomId);
+
+  if (memberError) {
+    message('Unable to load room members: ' + memberError.message);
+    return;
+  }
+
+  document.getElementById('roomTitle').textContent =
+    room.room_name;
+
+  document.getElementById('roomTopic').textContent =
+    room.topic || 'Open conversation';
+
+  const isHost = room.host_id === currentUser.id;
+  const hostName = isHost
+    ? (currentUser.user_metadata?.full_name || currentUser.email || 'You')
+    : 'Room Host';
+
+  document.getElementById('roomHostAvatar').textContent =
+    hostName.charAt(0).toUpperCase();
+
+  document.getElementById('roomHostName').textContent =
+    isHost ? hostName + ' (You)' : hostName;
+
+  /* Eight visual speaker seats.
+     These are placeholders until speaker-role controls are implemented.
+  */
+  const seatsHTML = Array.from({ length: 8 }, (_, index) => `
+    <div class="seat">
+      <div class="seat-avatar">＋</div>
+      <strong>Seat ${index + 1}</strong>
+      <span>Available</span>
+    </div>
+  `).join('');
+
+  document.getElementById('speakerSeats').innerHTML = seatsHTML;
+
+  /* Member list */
+
+  const memberHTML = (members || []).map(member => {
+    const isYou = member.user_id === currentUser.id;
+    const displayName = isYou
+      ? (currentUser.user_metadata?.full_name || 'You')
+      : 'Community Member';
+
+    return `
+      <div class="member-row">
+        <div class="room-avatar">
+          ${escapeHTML(displayName.charAt(0).toUpperCase())}
+        </div>
+
+        <div class="member-details">
+          <strong>${escapeHTML(isYou ? displayName + ' (You)' : displayName)}</strong>
+          <p>${escapeHTML(member.role || 'listener')}</p>
+        </div>
+
+        <span class="member-role">
+          ${escapeHTML(String(member.role || 'listener').toUpperCase())}
+        </span>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('roomMemberList').innerHTML =
+    memberHTML || '<p class="small-note">No members yet.</p>';
+
+  document.getElementById('roomMemberCount').textContent =
+    '(' + (members || []).length + ')';
+};
+
+/* CLOSE ROOM */
+
+window.closeRoom = function() {
+  activeRoomId = null;
+  localStorage.removeItem('activeRoomId');
+
+  document.getElementById('roomView').classList.add('hidden');
+  document.querySelector('.bottom-nav').classList.remove('hidden');
+
+  document.getElementById('homeTab').classList.remove('hidden');
+
+  document.querySelector('#account > .home-header').classList.remove('hidden');
+
+  document.querySelectorAll('.bottom-nav button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  document.querySelector('.bottom-nav button').classList.add('active');
+
+  message('');
+  loadRooms();
+};
+
+/* LEAVE ROOM */
+
+window.leaveRoom = async function() {
+  if (!activeRoomId || !currentUser) return;
+
+  const { data: room, error: roomError } = await db
+    .from('rooms')
+    .select('host_id')
+    .eq('id', activeRoomId)
+    .maybeSingle();
+
+  if (roomError) {
+    message(roomError.message);
+    return;
+  }
+
+  if (room && room.host_id !== currentUser.id) {
+    const { error } = await db
+      .from('room_members')
+      .delete()
+      .eq('room_id', activeRoomId)
+      .eq('user_id', currentUser.id);
+
+    if (error) {
+      message('Unable to leave: ' + error.message);
+      return;
+    }
+  }
+
+  message('You left the room.');
+  closeRoom();
+};
+
+/* REALTIME */
+
+function subscribeRealtime() {
+  unsubscribeRealtime();
+
+  roomChannel = db
+    .channel('community-rooms-live')
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'rooms'
+      },
+      () => {
+        loadRooms();
+        if (activeRoomId) loadRoomDetails();
+      }
+    )
+    .subscribe();
+
+  memberChannel = db
+    .channel('community-members-live')
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'room_members'
+      },
+      () => {
+        loadRooms();
+        if (activeRoomId) loadRoomDetails();
+      }
+    )
+    .subscribe();
+}
+
+function unsubscribeRealtime() {
+  if (roomChannel) {
+    db.removeChannel(roomChannel);
+    roomChannel = null;
+  }
+
+  if (memberChannel) {
+    db.removeChannel(memberChannel);
+    memberChannel = null;
+  }
+}
+
+/* AUTH STATE */
+
+db.auth.onAuthStateChange((_event, session) => {
+  displayAccount(session);
+});
+
+const { data: { session } } = await db.auth.getSession();
+displayAccount(session);
+
+window.copyUserId = async function() {
+  if (!currentUser) return;
+
+  try {
+    await navigator.clipboard.writeText(currentUser.id);
+    alert('User ID copied successfully!');
+  } catch (error) {
+    alert('Unable to copy User ID. Please try again.');
+  }
+};
+   /* BUGTAW ADMIN BACKGROUND MANAGER */
+
+let isAppAdmin = false;
+
+async function initAdminBackgroundManager() {
+  if (!currentUser) return;
+
+  const { data: admin, error } = await db
+    .from('app_admins')
+    .select('user_id')
+    .eq('user_id', currentUser.id)
+    .maybeSingle();
+
+  if (error) {
+    console.error('Admin check failed:', error.message);
+    return;
+  }
+
+  isAppAdmin = !!admin;
+
+  const adminCard = document.getElementById('adminBackgroundCard');
+
+  if (adminCard) {
+    adminCard.classList.toggle('hidden', !isAppAdmin);
+  }
+
+  await loadAppBackground();
+}
+
+async function loadAppBackground() {
+  const { data, error } = await db
+    .from('app_settings')
+    .select('background_color, background_image_url')
+    .eq('id', 1)
+    .maybeSingle();
+
+  if (error || !data) {
+    console.error('Unable to load background:', error?.message);
+    return;
+  }
+
+  applyAppBackground(data);
+
+  const colorInput = document.getElementById('backgroundColor');
+
+  if (colorInput) {
+    colorInput.value = data.background_color || '#171326';
+  }
+}
+
+function applyAppBackground(settings) {
+  document.body.style.backgroundColor =
+    settings.background_color || '#171326';
+
+  document.body.style.backgroundImage = settings.background_image_url
+    ? `url("${settings.background_image_url}")`
+    : 'none';
+
+  document.body.style.backgroundSize = 'cover';
+  document.body.style.backgroundPosition = 'center';
+  document.body.style.backgroundAttachment = 'fixed';
+}
+
+window.saveAppBackground = async function() {
+  if (!currentUser || !isAppAdmin) {
+    alert('Admin access required.');
+    return;
+  }
+
+  const status = document.getElementById('backgroundStatus');
+  const colorInput = document.getElementById('backgroundColor');
+  const imageInput = document.getElementById('backgroundImage');
+
+  if (!colorInput || !imageInput) return;
+
+  status.textContent = 'Saving...';
+
+  const { data: currentSettings } = await db
+    .from('app_settings')
+    .select('background_image_url')
+    .eq('id', 1)
+    .maybeSingle();
+
+  let imageUrl = currentSettings?.background_image_url || null;
+
+  const file = imageInput.files?.[0];
+
+  if (file) {
+    if (!file.type.startsWith('image/')) {
+      status.textContent = 'Please select an image file.';
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      status.textContent = 'Image must be 5 MB or smaller.';
+      return;
+    }
+
+    const extension = file.name.split('.').pop().toLowerCase();
+    const filePath = `${currentUser.id}/${Date.now()}.${extension}`;
+
+    const { error: uploadError } = await db.storage
+      .from('bugtaw-backgrounds')
+      .upload(filePath, file, { upsert: true });
+
+    if (uploadError) {
+      status.textContent = 'Upload failed: ' + uploadError.message;
+      return;
+    }
+
+    const { data: publicData } = db.storage
+      .from('bugtaw-backgrounds')
+      .getPublicUrl(filePath);
+
+    imageUrl = publicData.publicUrl;
+  }
+
+  const { error } = await db
+    .from('app_settings')
+    .update({
+      background_color: colorInput.value,
+      background_image_url: imageUrl,
+      updated_by: currentUser.id,
+      updated_at: new Date().toISOString()
+    })
+    .eq('id', 1);
+
+  if (error) {
+    status.textContent = 'Save failed: ' + error.message;
+    return;
+  }
+
+  applyAppBackground({
+    background_color: colorInput.value,
+    background_image_url: imageUrl
+  });
+
+  status.textContent = 'Background saved successfully!';
+};
+
+document.addEventListener('change', event => {
+  if (event.target.id === 'backgroundColor') {
+    const preview = document.getElementById('backgroundPreview');
+    preview.style.backgroundColor = event.target.value;
+  }
+
+  if (event.target.id === 'backgroundImage') {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const preview = document.getElementById('backgroundPreview');
+    preview.style.backgroundImage = `url("${URL.createObjectURL(file)}")`;
+    preview.style.backgroundSize = 'cover';
+    preview.style.backgroundPosition = 'center';
+  }
+}); 
+
+</script>
+
+</body>
+</html>
   
 <!-- ROOM VIEW -->
 <div id="roomView" class="room-screen hidden">
