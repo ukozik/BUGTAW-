@@ -980,7 +980,7 @@ window.showRoomNotice = function(text) {
 
 window.showForm = function(form) {
   ['home', 'discovery', 'message', 'radio', 'profile'].forEach(name => {
-    document.getElementById(id).classList.add('hidden');
+    document.getElementById(name + 'Tab').classList.add('hidden');
   });
 
   document.getElementById(form).classList.remove('hidden');
