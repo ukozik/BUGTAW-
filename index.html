@@ -989,7 +989,7 @@ window.showForm = function(form) {
 window.showTab = function(tab, button) {
   if (activeRoomId) return;
 
- ['home', 'discovery', 'message', 'radio', 'profile'].forEach(name => {
+ ['home', 'discovery', 'message', 'profile'].forEach(name => {
     document.getElementById(name + 'Tab').classList.add('hidden');
   });
 
