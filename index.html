@@ -1683,6 +1683,162 @@ window.copyUserId = async function() {
     alert('Unable to copy User ID. Please try again.');
   }
 };
+   /* BUGTAW ADMIN BACKGROUND MANAGER */
+
+let isAppAdmin = false;
+
+async function initAdminBackgroundManager() {
+  if (!currentUser) return;
+
+  const { data: admin, error } = await db
+    .from('app_admins')
+    .select('user_id')
+    .eq('user_id', currentUser.id)
+    .maybeSingle();
+
+  if (error) {
+    console.error('Admin check failed:', error.message);
+    return;
+  }
+
+  isAppAdmin = !!admin;
+
+  const adminCard = document.getElementById('adminBackgroundCard');
+
+  if (adminCard) {
+    adminCard.classList.toggle('hidden', !isAppAdmin);
+  }
+
+  await loadAppBackground();
+}
+
+async function loadAppBackground() {
+  const { data, error } = await db
+    .from('app_settings')
+    .select('background_color, background_image_url')
+    .eq('id', 1)
+    .maybeSingle();
+
+  if (error || !data) {
+    console.error('Unable to load background:', error?.message);
+    return;
+  }
+
+  applyAppBackground(data);
+
+  const colorInput = document.getElementById('backgroundColor');
+
+  if (colorInput) {
+    colorInput.value = data.background_color || '#171326';
+  }
+}
+
+function applyAppBackground(settings) {
+  document.body.style.backgroundColor =
+    settings.background_color || '#171326';
+
+  document.body.style.backgroundImage = settings.background_image_url
+    ? `url("${settings.background_image_url}")`
+    : 'none';
+
+  document.body.style.backgroundSize = 'cover';
+  document.body.style.backgroundPosition = 'center';
+  document.body.style.backgroundAttachment = 'fixed';
+}
+
+window.saveAppBackground = async function() {
+  if (!currentUser || !isAppAdmin) {
+    alert('Admin access required.');
+    return;
+  }
+
+  const status = document.getElementById('backgroundStatus');
+  const colorInput = document.getElementById('backgroundColor');
+  const imageInput = document.getElementById('backgroundImage');
+
+  if (!colorInput || !imageInput) return;
+
+  status.textContent = 'Saving...';
+
+  const { data: currentSettings } = await db
+    .from('app_settings')
+    .select('background_image_url')
+    .eq('id', 1)
+    .maybeSingle();
+
+  let imageUrl = currentSettings?.background_image_url || null;
+
+  const file = imageInput.files?.[0];
+
+  if (file) {
+    if (!file.type.startsWith('image/')) {
+      status.textContent = 'Please select an image file.';
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      status.textContent = 'Image must be 5 MB or smaller.';
+      return;
+    }
+
+    const extension = file.name.split('.').pop().toLowerCase();
+    const filePath = `${currentUser.id}/${Date.now()}.${extension}`;
+
+    const { error: uploadError } = await db.storage
+      .from('bugtaw-backgrounds')
+      .upload(filePath, file, { upsert: true });
+
+    if (uploadError) {
+      status.textContent = 'Upload failed: ' + uploadError.message;
+      return;
+    }
+
+    const { data: publicData } = db.storage
+      .from('bugtaw-backgrounds')
+      .getPublicUrl(filePath);
+
+    imageUrl = publicData.publicUrl;
+  }
+
+  const { error } = await db
+    .from('app_settings')
+    .update({
+      background_color: colorInput.value,
+      background_image_url: imageUrl,
+      updated_by: currentUser.id,
+      updated_at: new Date().toISOString()
+    })
+    .eq('id', 1);
+
+  if (error) {
+    status.textContent = 'Save failed: ' + error.message;
+    return;
+  }
+
+  applyAppBackground({
+    background_color: colorInput.value,
+    background_image_url: imageUrl
+  });
+
+  status.textContent = 'Background saved successfully!';
+};
+
+document.addEventListener('change', event => {
+  if (event.target.id === 'backgroundColor') {
+    const preview = document.getElementById('backgroundPreview');
+    preview.style.backgroundColor = event.target.value;
+  }
+
+  if (event.target.id === 'backgroundImage') {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const preview = document.getElementById('backgroundPreview');
+    preview.style.backgroundImage = `url("${URL.createObjectURL(file)}")`;
+    preview.style.backgroundSize = 'cover';
+    preview.style.backgroundPosition = 'center';
+  }
+}); 
 
 </script>
 
